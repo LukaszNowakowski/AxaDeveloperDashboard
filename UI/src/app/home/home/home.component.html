@@ -1,11 +1,21 @@
 <h2>Home</h2>
 <div>
     <h3>
-        <span *ngIf="!EnvironmentsVisible" (click)="EnvironmentsVisible = true">+</span>
-        <span *ngIf="EnvironmentsVisible" (click)="EnvironmentsVisible = false">-</span>
+        <span *ngIf="!EnvironmentsVisible" (click)="EnvironmentsVisible = true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" version="1.1" viewBox="0 0 100 100">
+                <line x1="0" y1="50" x2="100" y2="50" style="stroke:rgb(0, 0, 0);stroke-width:10" />
+                <line x1="50" y1="0" x2="50" y2="100" style="stroke:rgb(0, 0, 0);stroke-width:10" />
+            </svg>
+        </span>
+        <span *ngIf="EnvironmentsVisible" (click)="EnvironmentsVisible = false">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" version="1.1" viewBox="0 0 100 100">
+                <line x1="0" y1="50" x2="100" y2="50" style="stroke:rgb(0, 0, 0);stroke-width:10" />
+            </svg>
+        </span>
         Environments status
     </h3>
-    <div *ngIf="EnvironmentsVisible" style="display: grid; grid-template-columns: 1fr 1fr 1fr; column-gap: 10px; row-gap: 10px;">
+    <div *ngIf="EnvironmentsVisible"
+        style="display: grid; grid-template-columns: 1fr 1fr 1fr; column-gap: 10px; row-gap: 10px;">
         <mat-card *ngFor="let env of Environments">
             <mat-card-header>
                 <mat-card-title>{{ env.name }}</mat-card-title>
