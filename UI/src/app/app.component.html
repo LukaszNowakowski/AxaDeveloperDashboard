@@ -62,9 +62,9 @@
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
   <span><img src="./logo.png" title="Logo" /></span>
-  <span>{{title}}</span>
-  <span>Environments access</span>
-  <span>Work items</span>
+  <span><a [routerLink]="['home']">Dashboard</a></span>
+  <span><a [routerLink]="['environments']">Environments access</a></span>
+  <span><a [routerLink]="['workItems']">Work items</a></span>
 </div>
 
 <div class="content" role="main">
