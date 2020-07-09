@@ -3,6 +3,18 @@
 
 $theme-accent: mat-palette($mat-light-blue);
 
+.tasksList {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+    row-gap: 10px;
+}
+
 mat-card {
     background-color: mat-color($theme-accent);
+}
+
+mat-card-subtitle {
+    overflow: hidden;
+    word-break: break-all;
 }

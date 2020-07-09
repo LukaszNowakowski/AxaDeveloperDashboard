@@ -7,21 +7,25 @@ import * as model from './home.model';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  public EnvironmentsVisible: boolean = false;
+  public TasksVisible: boolean = true;
 
-  public Environments: model.EnvironmentInformation[] = [];
+  public Tasks: model.AzureWorkItem[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
-    var result: model.EnvironmentInformation[] = [
-      { name: 'CI', buildName: 'INT.Par.Leonardo.2020.07.08.15', testResults: {ran: 2673, passed: 1954, failed: 719, passRate: 73.1 } },
-      { name: 'CI2', buildName: 'INT.Par.Leonardo.2020.07.08.15', testResults: {ran: 2673, passed: 1954, failed: 719, passRate: 73.1 } },
-      { name: 'CI3', buildName: 'INT.Par.Leonardo.2020.07.08.15', testResults: {ran: 2673, passed: 1954, failed: 719, passRate: 73.1 } },
-      { name: 'DIT01', buildName: 'INT.Par.Leonardo.2020.07.08.15', testResults: {ran: 2673, passed: 1954, failed: 719, passRate: 73.1 } },
-      { name: 'DIT02', buildName: 'INT.Par.Leonardo.2020.07.08.15', testResults: {ran: 2673, passed: 1954, failed: 719, passRate: 73.1 } },
-      { name: 'DIT03', buildName: 'INT.Par.Leonardo.2020.07.08.15', testResults: {ran: 2673, passed: 1954, failed: 719, passRate: 73.1 } },
+    var result: model.AzureWorkItem[] = [
+      { id: 203961, title: "Remove file system dependency from FetchBatchNetworkPathQueryHandler", areaPath: "Leonardo\Evolution\Roadmap 2019\Cloud", release: "R20.09" }
     ];
-    this.Environments = result;
+    this.Tasks = result;
+  }
+
+  public PrepareTitle(title: string) {
+    var result: string = title || "";
+    if (result.length > 50) {
+      result = result.substring(0, 50) + "...";
+    }
+
+    return result;
   }
 }

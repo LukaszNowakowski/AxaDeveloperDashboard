@@ -1,12 +1,6 @@
-export interface TestResults {
-    ran: number;
-    passed: number;
-    failed: number;
-    passRate: number;
-}
-
-export interface EnvironmentInformation {
-    name: string;
-    buildName: string;
-    testResults: TestResults;
+export interface AzureWorkItem {
+    id: number;
+    title: string;
+    areaPath: string;
+    release: string;
 }

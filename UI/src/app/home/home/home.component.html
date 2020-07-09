@@ -1,46 +1,28 @@
 <h2>Home</h2>
 <div>
     <h3>
-        <span *ngIf="!EnvironmentsVisible" (click)="EnvironmentsVisible = true">
+        <span *ngIf="!TasksVisible" (click)="TasksVisible = true">
             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" version="1.1" viewBox="0 0 100 100">
                 <line x1="0" y1="50" x2="100" y2="50" style="stroke:rgb(0, 0, 0);stroke-width:10" />
                 <line x1="50" y1="0" x2="50" y2="100" style="stroke:rgb(0, 0, 0);stroke-width:10" />
             </svg>
         </span>
-        <span *ngIf="EnvironmentsVisible" (click)="EnvironmentsVisible = false">
+        <span *ngIf="TasksVisible" (click)="TasksVisible = false">
             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" version="1.1" viewBox="0 0 100 100">
                 <line x1="0" y1="50" x2="100" y2="50" style="stroke:rgb(0, 0, 0);stroke-width:10" />
             </svg>
         </span>
-        Environments status
+        Your tasks
     </h3>
-    <div *ngIf="EnvironmentsVisible"
-        style="display: grid; grid-template-columns: 1fr 1fr 1fr; column-gap: 10px; row-gap: 10px;">
-        <mat-card *ngFor="let env of Environments">
+    <div *ngIf="TasksVisible" class="tasksList">
+        <mat-card *ngFor="let task of Tasks">
             <mat-card-header>
-                <mat-card-title>{{ env.name }}</mat-card-title>
-                <mat-card-subtitle>{{ env.buildName }}</mat-card-subtitle>
+                <mat-card-title>{{ task.id }}</mat-card-title>
+                <mat-card-subtitle>{{ PrepareTitle(task.title) }}</mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
-                Tests report:
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Tests run</th>
-                            <th>Tests passed</th>
-                            <th>Tests failed</th>
-                            <th>Pass rate [%]</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{{ env.testResults.ran }}</td>
-                            <td>{{ env.testResults.passed }}</td>
-                            <td>{{ env.testResults.failed }}</td>
-                            <td>{{ env.testResults.passRate }}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div>Release: {{ task.release }}</div>
+                <div>Area: {{ task.areaPath }}</div>
             </mat-card-content>
         </mat-card>
     </div>
