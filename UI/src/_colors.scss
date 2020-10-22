@@ -1,0 +1,59 @@
+$accent-color: #00b283;
+$accent-color-dark: #58d3b3;
+
+$accent-hover-color: lighten($accent-color, 10%);
+$accent-hover-color-dark: darken($accent-color-dark, 10%);
+
+$background-primary-color: #ffffff;
+$background-primary-color-dark: #1f3759;
+
+$background-secondary-color: #e9eef4;
+$background-secondary-color-dark: #0e2546;
+
+$text-primary-color: #454545;
+$text-primary-color-dark: #ffffff;
+
+$text-secondary-color: #868686;
+$text-secondary-color-dark: #bcc3cd;
+
+$text-tertiary-color: #bfbfbf;
+$text-tertiary-color-dark: #bfbfbf;
+
+$link-default-color: $text-primary-color;
+$link-default-color-dark: $text-primary-color-dark;
+$link-default-color-hover: lighten($link-default-color, 10%);
+$link-default-color-hover-dark: darken($link-default-color-dark, 10%);
+
+$separator-color: #e4e7f4;
+$separator-color-dark: #405471;
+
+$panel-background-color: $background-primary-color;
+$panel-background-color-dark: $background-primary-color-dark;
+
+$toolbar-background-color: $background-primary-color;
+$toolbar-background-color-dark: $background-primary-color-dark;
+
+$toolbar-link-text-color: #797e95;
+$toolbar-link-text-color-dark: #9bb5db;
+
+$loading-indicator-color: $accent-color;
+
+$colors: (
+    --accent-color: ($accent-color, $accent-color-dark),
+    --accent-hover-color: ($accent-hover-color, $accent-hover-color-dark),
+
+    --background-primary-color: ($background-primary-color, $background-primary-color-dark),
+    --background-secondary-color: ($background-secondary-color, $background-secondary-color-dark),
+
+    --text-primary-color: ($text-primary-color, $text-primary-color-dark),
+    --text-secondary-color: ($text-secondary-color, $text-secondary-color-dark),
+    --text-tertiary-color: ($text-tertiary-color, $text-tertiary-color-dark),
+
+    --link-default-color: ($link-default-color, $link-default-color-dark),
+    --link-default-color-hover: ($link-default-color-hover, $link-default-color-hover-dark),
+
+    --panel-background-color: ($panel-background-color, $panel-background-color-dark),
+
+    --toolbar-background-color: ($toolbar-background-color, $toolbar-background-color-dark),
+    --toolbar-link-text-color: ($toolbar-link-text-color, $toolbar-link-text-color-dark)
+);

@@ -1,5 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import './colors';
+@import './theme';
+@import './animations';
+
 html,
 body {
     height: 100%;
@@ -7,5 +10,15 @@ body {
 }
 body {
     margin: 0;
+    background-color: var(--background-primary-color);
+    color: var(--text-primary-color);
     font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+a {
+    color: var(--link-default-color);
+}
+
+a:hover {
+    color: var(--link-default-color-hover);
 }

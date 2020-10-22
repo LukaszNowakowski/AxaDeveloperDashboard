@@ -1,11 +1,25 @@
 .container {
     display: grid;
     grid-template-columns: auto 1fr;
+    min-height: calc(100vh - 3rem);
 }
 
 .sidebar {
     grid-column: 1;
     padding: 10px;
+    background-image: linear-gradient(to left, var(--background-secondary-color), var(--panel-background-color));
+}
+
+.sidebar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+general-style-switcher {
+    margin: auto;
 }
 
 .hidden {
@@ -16,8 +30,22 @@
     grid-column: 2;
 }
 
+footer {
+    position: relative;
+    bottom: 0;
+    height: 3rem;
+    line-height: 3rem;
+    text-align: center;
+    vertical-align: middle;
+}
+
 .visibilitySwitch {
     position: relative;
     left: -20px;
     cursor: pointer;
+}
+
+#logo {
+    width: 120px;
+    height: 120px;
 }

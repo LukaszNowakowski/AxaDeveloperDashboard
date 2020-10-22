@@ -1,35 +1,37 @@
 <div class="container">
   <div class="sidebar" *ngIf="SideBarVisible">
     <ul>
-      <li><img src="./logo.png" title="Logo" /></li>
-      <li><a [routerLink]="['home']">Dashboard</a></li>
+      <li><a [routerLink]="['home']"><img src="./assets/logo-axa.svg" title="Logo" id="logo" /></a></li>
+      <li><a [routerLink]="['home']">Dashboard home</a></li>
       <li><a [routerLink]="['environments']">Environments access</a></li>
       <li><a [routerLink]="['workItems']">Work items</a></li>
     </ul>
+    <general-style-switcher></general-style-switcher>
   </div>
   <div class="sidebar" *ngIf="!SideBarVisible">
     &nbsp;
   </div>
 
   <div class="content" role="main">
-    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" version="1.1" viewBox="0 0 100 100" class="visibilitySwitch" *ngIf="SideBarVisible" (click)="SwitchSideBarVisibility()">
-      <circle cx="50" cy="50" r="48"  fill="#03a9f4" />
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" version="1.1" viewBox="0 0 100 100"
+      class="visibilitySwitch" *ngIf="SideBarVisible" (click)="SwitchSideBarVisibility()">
+      <circle cx="50" cy="50" r="48" fill="#03a9f4" />
       <line x1="65" y1="20" x2="30" y2="50" style="stroke:white;stroke-width:10" />
       <line x1="65" y1="80" x2="30" y2="50" style="stroke:white;stroke-width:10" />
     </svg>
 
-    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" version="1.1" viewBox="0 0 100 100" class="visibilitySwitch" *ngIf="!SideBarVisible" (click)="SwitchSideBarVisibility()">
-      <circle cx="50" cy="50" r="48"  fill="#03a9f4" />
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" version="1.1" viewBox="0 0 100 100"
+      class="visibilitySwitch" *ngIf="!SideBarVisible" (click)="SwitchSideBarVisibility()">
+      <circle cx="50" cy="50" r="48" fill="#03a9f4" />
       <line x1="35" y1="20" x2="70" y2="50" style="stroke:white;stroke-width:10" />
       <line x1="35" y1="80" x2="70" y2="50" style="stroke:white;stroke-width:10" />
     </svg>
 
     <router-outlet></router-outlet>
 
-    <!-- Footer -->
-    <footer>
-      <span>AXA Developer dashboard</span>
-    </footer>
-
   </div>
+
 </div>
+<footer>
+  <span>AXA Developer dashboard</span>
+</footer>
