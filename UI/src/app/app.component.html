@@ -1,78 +1,35 @@
-<style>
-  :host {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    font-size: 14px;
-    color: #333;
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+<div class="container">
+  <div class="sidebar" *ngIf="SideBarVisible">
+    <ul>
+      <li><img src="./logo.png" title="Logo" /></li>
+      <li><a [routerLink]="['home']">Dashboard</a></li>
+      <li><a [routerLink]="['environments']">Environments access</a></li>
+      <li><a [routerLink]="['workItems']">Work items</a></li>
+    </ul>
+  </div>
+  <div class="sidebar" *ngIf="!SideBarVisible">
+    &nbsp;
+  </div>
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin: 8px 0;
-  }
+  <div class="content" role="main">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" version="1.1" viewBox="0 0 100 100" class="visibilitySwitch" *ngIf="SideBarVisible" (click)="SwitchSideBarVisibility()">
+      <circle cx="50" cy="50" r="48"  fill="#03a9f4" />
+      <line x1="65" y1="20" x2="30" y2="50" style="stroke:white;stroke-width:10" />
+      <line x1="65" y1="80" x2="30" y2="50" style="stroke:white;stroke-width:10" />
+    </svg>
 
-  p {
-    margin: 0;
-  }
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" version="1.1" viewBox="0 0 100 100" class="visibilitySwitch" *ngIf="!SideBarVisible" (click)="SwitchSideBarVisibility()">
+      <circle cx="50" cy="50" r="48"  fill="#03a9f4" />
+      <line x1="35" y1="20" x2="70" y2="50" style="stroke:white;stroke-width:10" />
+      <line x1="35" y1="80" x2="70" y2="50" style="stroke:white;stroke-width:10" />
+    </svg>
 
-  .spacer {
-    flex: 1;
-  }
+    <router-outlet></router-outlet>
 
-  .toolbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    background-color: #1976d2;
-    color: white;
-    font-weight: 600;
-  }
+    <!-- Footer -->
+    <footer>
+      <span>AXA Developer dashboard</span>
+    </footer>
 
-  .toolbar span {
-    margin-right: 10px;
-  }
-
-  .content {
-    margin: 82px auto 32px;
-    padding: 0 16px;
-    max-width: 960px;
-  }
-
-  footer {
-    padding: 0 16px;
-    margin-top: 8px;
-    display: flex;
-    align-items: center;
-    line-height: 20px;
-    max-width: 960px;
-    text-align: center;
-  }
-</style>
-
-<!-- Toolbar -->
-<div class="toolbar" role="banner">
-  <span><img src="./logo.png" title="Logo" /></span>
-  <span><a [routerLink]="['home']">Dashboard</a></span>
-  <span><a [routerLink]="['environments']">Environments access</a></span>
-  <span><a [routerLink]="['workItems']">Work items</a></span>
-</div>
-
-<div class="content" role="main">
-  <router-outlet></router-outlet>
-
-  <!-- Footer -->
-  <footer>
-    <span>AXA Developer dashboard</span>
-  </footer>
-
+  </div>
 </div>

@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Dashboard';
+
+  public SideBarVisible: boolean = true;
+
+  public SwitchSideBarVisibility() {
+    this.SideBarVisible = !this.SideBarVisible;
+  }
 }

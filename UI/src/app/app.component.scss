@@ -1,0 +1,23 @@
+.container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+}
+
+.sidebar {
+    grid-column: 1;
+    padding: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+.content {
+    grid-column: 2;
+}
+
+.visibilitySwitch {
+    position: relative;
+    left: -20px;
+    cursor: pointer;
+}
