@@ -1,0 +1,10 @@
+version: "3.7"
+
+services:
+    dev.axadashboard:
+        image: axadashboard:dev
+        container_name: dev.axadashboard
+        ports:
+            - 4000:80
+        restart: always
+
