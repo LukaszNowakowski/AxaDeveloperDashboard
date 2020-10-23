@@ -1,0 +1,14 @@
+$blockHeight: 200px;
+
+.shortcuts {
+    display: grid;
+    grid-template-areas: "a a a";
+    grid-gap: 10px;
+    grid-auto-rows: $blockHeight;
+}
+
+.shortcuts > * {
+    text-align: center;
+    background-color: var(--background-secondary-color);
+    line-height: $blockHeight;
+}
