@@ -8,6 +8,7 @@ import { GlobalModule } from './global.module';
 import { GeneralModule } from './general/general.module';
 import { HomeModule } from './home/home.module';
 import { EnvironmentsModule } from './environments/environments.module';
+import { WorkItemsModule } from './work-items/work-items.module';
 import { StyleTogglerService } from './services/style-toggler.service';
 
 export function themeFactory(themeService: StyleTogglerService) {
@@ -22,6 +23,7 @@ export function themeFactory(themeService: StyleTogglerService) {
     GlobalModule,
     HomeModule,
     EnvironmentsModule,
+    WorkItemsModule,
     AppRoutingModule,
     GeneralModule
   ],
