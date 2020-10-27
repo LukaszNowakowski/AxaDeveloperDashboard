@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { MaterialModule } from '../material.module';
+import { GlobalModule } from '../global.module';
 
 const ROUTES: Routes = [
   { path: "home", component: HomeComponent },
@@ -13,9 +12,8 @@ const ROUTES: Routes = [
     HomeComponent
   ],
   imports: [
-    CommonModule,
+    GlobalModule,
     RouterModule.forRoot(ROUTES),
-    MaterialModule
   ]
 })
 export class HomeModule { }

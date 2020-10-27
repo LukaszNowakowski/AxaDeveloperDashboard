@@ -1,0 +1,17 @@
+<div class="environmentsContainer">
+    <mat-card *ngFor="let env of Environments">
+        <mat-card-header>
+            <mat-card-title>{{ env.DisplayName }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <ul>
+                <li *ngFor="let link of env.Links">
+                    <a mat-button color="accent" [href]="link.Url" target="_blank" [title]="link.DisplayName">
+                        <mat-icon *ngIf="!!link.Icon">{{ link.Icon }}</mat-icon>
+                        <span *ngIf="!link.Icon">{{ link.DisplayName }}</span>
+                    </a>
+                </li>
+            </ul>
+        </mat-card-content>
+    </mat-card>
+</div>

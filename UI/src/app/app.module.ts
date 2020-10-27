@@ -1,16 +1,14 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MaterialModule } from './material.module';
-import { FormsModule } from "@angular/forms";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { HomeModule } from './home/home.module';
-import { StyleTogglerService } from './services/style-toggler.service';
+import { GlobalModule } from './global.module';
 
 import { GeneralModule } from './general/general.module';
+import { HomeModule } from './home/home.module';
+import { EnvironmentsModule } from './environments/environments.module';
+import { StyleTogglerService } from './services/style-toggler.service';
 
 export function themeFactory(themeService: StyleTogglerService) {
   return () => themeService.setThemeOnStart();
@@ -21,12 +19,10 @@ export function themeFactory(themeService: StyleTogglerService) {
     AppComponent
   ],
   imports: [
-    BrowserModule,
+    GlobalModule,
     HomeModule,
+    EnvironmentsModule,
     AppRoutingModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    MaterialModule,
     GeneralModule
   ],
   providers: [

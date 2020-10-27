@@ -10,6 +10,11 @@
     background-image: linear-gradient(to left, var(--background-secondary-color), var(--panel-background-color));
 }
 
+.sidebarPlaceholder {
+    grid-column: 1;
+    padding: 10px;
+}
+
 .sidebar ul {
     list-style: none;
     margin: 0;
