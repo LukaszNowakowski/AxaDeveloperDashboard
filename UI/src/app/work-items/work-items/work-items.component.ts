@@ -5,11 +5,11 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './work-items.component.html',
   styleUrls: ['./work-items.component.scss']
 })
-export class WorkItemsComponent implements OnInit {
-
+export class WorkItemsComponent {
+  public ProductionErrorId: string = "";
   constructor() { }
 
-  ngOnInit(): void {
+  public OpenProductionError() {
+    console.log(this.ProductionErrorId);
   }
-
 }
