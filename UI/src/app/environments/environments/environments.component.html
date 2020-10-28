@@ -1,7 +1,10 @@
 <div class="environmentsContainer">
     <mat-card *ngFor="let env of Environments">
         <mat-card-header>
-            <mat-card-title>{{ env.DisplayName }}</mat-card-title>
+            <mat-card-title>
+                <mat-icon>api</mat-icon>
+                {{ env.DisplayName }}
+            </mat-card-title>
         </mat-card-header>
         <mat-card-content>
             <ul>
