@@ -8,6 +8,9 @@
                 <mat-label>Production error id</mat-label>
                 <input matInput placeholder="Error id" [(ngModel)]="ProductionErrorId">
             </mat-form-field>
+            <div *ngIf="DisplayProductionErrorOpeningMessage">
+                Production log is being opened.
+            </div>
         </mat-card-content>
         <mat-card-actions>
             <button mat-button color="accent" (click)="OpenProductionError()">

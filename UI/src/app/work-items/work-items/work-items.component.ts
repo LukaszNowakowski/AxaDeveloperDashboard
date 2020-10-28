@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { WorkItemsService } from '../services/work-items.service';
 
 @Component({
   selector: 'app-work-items',
@@ -7,9 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WorkItemsComponent {
   public ProductionErrorId: string = "";
-  constructor() { }
+
+  public DisplayProductionErrorOpeningMessage: boolean = false;
+
+  constructor(private workItemsService: WorkItemsService) { }
 
   public OpenProductionError() {
     console.log(this.ProductionErrorId);
+    var cast = parseInt(this.ProductionErrorId);
+    if (!!cast) {
+      this.workItemsService.CreateProductionLogUrl({ ErrorId: cast })
+        .then(r => {
+          if (r.Success) {
+            this.DisplayProductionErrorOpeningMessage = true;
+            setTimeout(() => window.open(r.Url), 800);
+          }
+          else {
+            alert(r.Error);
+          }
+        })
+        .finally(() => {
+          setTimeout(() => this.DisplayProductionErrorOpeningMessage = false, 2000);
+        });
+    }
   }
 }
