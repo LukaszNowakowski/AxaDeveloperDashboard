@@ -3,7 +3,7 @@ on:
     push:
         branches:
             - develop
-            - 'features/**'
+            - 'feature/**'
     workflow_dispatch:
             
 jobs:
