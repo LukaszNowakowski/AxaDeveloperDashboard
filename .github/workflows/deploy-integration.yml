@@ -4,6 +4,7 @@ on:
         branches:
             - develop
             - 'features/**'
+    workflow_dispatch:
             
 jobs:
     push_to_registry:
