@@ -1,10 +1,10 @@
-version: "3.7"
+version: '3'
 
 services:
-    dev.axadashboard:
-        image: axadashboard:dev
-        container_name: dev.axadashboard
-        ports:
-            - 4000:80
+    dev.avanssur.axadeveloperdashboard.ui:
+        container_name: dev.avanssur.axadeveloperdashboard.ui
+        hostname: dev.avanssur.axadeveloperdashboard.ui
+        image: avanssur.axadeveloperdashboard.ui:dev
         restart: always
-
+        ports:
+            - 6500:80
