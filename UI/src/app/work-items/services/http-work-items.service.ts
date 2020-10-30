@@ -9,7 +9,7 @@ import * as servicesState from '../../services/redux/state';
 export class HttpWorkItemsService {
    constructor(private http: HttpClient, private store: Store) { }
 
-  public FetchEnvironments(errorId: number): Promise<string> {
+  public GetProductionLogPath(errorId: number): Promise<string> {
     var baseAddress = this.store.selectSnapshot(servicesState.ServicesState).workItems;
     let path = `${baseAddress}/productionLogPath/${errorId}`;
     return this.http.get<string>(path, {})

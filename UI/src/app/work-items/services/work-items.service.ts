@@ -9,7 +9,7 @@ export class WorkItemsService {
   constructor(private httpService: HttpWorkItemsService) { }
 
   public CreateProductionLogUrl(request: models.CreateProductionLogUrlRequest): Promise<models.CreateProductionLogUrlResponse> {
-    return this.httpService.FetchEnvironments(request.ErrorId)
+    return this.httpService.GetProductionLogPath(request.ErrorId)
       .then(result => {
         return { Success: true, Url: result };
       })
