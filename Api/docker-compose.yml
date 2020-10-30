@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+    dev.avanssur.axadeveloperdashboard.api:
+        container_name: dev.avanssur.axadeveloperdashboard.api
+        hostname: dev.avanssur.axadeveloperdashboard.api
+        image: avanssur.axadeveloperdashboard.api:dev
+        restart: always
+        ports:
+            - 6501:80

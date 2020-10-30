@@ -1,1 +1,1 @@
-docker build -t axadashboard:dev .
+docker build -t avanssur.axadeveloperdashboard.ui:dev .
