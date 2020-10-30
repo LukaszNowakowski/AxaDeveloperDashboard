@@ -5,5 +5,5 @@ export interface CreateProductionLogUrlRequest {
 export interface CreateProductionLogUrlResponse {
     Success: boolean;
     Url: string;
-    Error: string;
+    Error?: string;
 }

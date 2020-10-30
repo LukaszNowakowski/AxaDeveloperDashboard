@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
 import * as models from './work-items.models';
+import { HttpWorkItemsService } from './http-work-items.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WorkItemsService {
+  constructor(private httpService: HttpWorkItemsService) { }
+
   public CreateProductionLogUrl(request: models.CreateProductionLogUrlRequest): Promise<models.CreateProductionLogUrlResponse> {
-    return new Promise<models.CreateProductionLogUrlResponse>((resolve, reject) => {
-      if (!!request && !!request.ErrorId) {
-        var url = `http://ext-prod2-darwin.globaldirect.intraxa/Tools/logs/logViewer/${request.ErrorId}`;
-        resolve({ Success: true, Url: url, Error: "" });
-      }
-      else {
-        reject("No error id");
-      }
-    });
+    return this.httpService.FetchEnvironments(request.ErrorId)
+      .then(result => {
+        return { Success: true, Url: result };
+      })
+      .catch(error => {
+        return { Success: false, Url: "", Error: error };
+      });
   }
 }
