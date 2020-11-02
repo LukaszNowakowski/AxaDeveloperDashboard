@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Store } from '@ngxs/store';
+import * as servicesState from '../../services/redux/state';
 
 export interface Link {
   displayName: string;
@@ -20,10 +22,11 @@ export interface FetchEnvironmentsResponse {
   providedIn: 'root'
 })
 export class HttpEnvironmentsService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private store: Store) { }
 
   public FetchEnvironments(): Promise<FetchEnvironmentsResponse> {
-    return this.http.get<FetchEnvironmentsResponse>("http://localhost:6501/environments")
+    var baseAddress = this.store.selectSnapshot(servicesState.ServicesState).environments;
+    return this.http.get<FetchEnvironmentsResponse>(baseAddress)
       .toPromise();
   }
 }

@@ -1,1 +1,21 @@
-<p>work-items works!</p>
+<div>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>PROD errors</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-form-field>
+                <mat-label>Production error id</mat-label>
+                <input matInput placeholder="Error id" [(ngModel)]="ProductionErrorId">
+            </mat-form-field>
+            <div *ngIf="DisplayProductionErrorOpeningMessage">
+                Production log is being opened.
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button color="accent" (click)="OpenProductionError()">
+                Open
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>
