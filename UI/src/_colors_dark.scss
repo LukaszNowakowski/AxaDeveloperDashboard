@@ -6,12 +6,16 @@ $theme-accent:  mat-palette($mat-indigo, A200, A100, A400);
 
 $theme-warn:    mat-palette($mat-red);
 
+$mainBackground: #311b92;
+$panelBackground: #000063;
+$mainText: #ffffff;
+
 $mat-dark-theme-background: (
   status-bar: black,
   app-bar:    map_get($mat-grey, 900),
   background: #303030,
   hover:      rgba(white, 0.04),
-  card:       map_get($mat-grey, 800),
+  card:       $panelBackground,
   dialog:     map_get($mat-grey, 800),
   disabled-button: rgba(white, 0.12),
   raised-button: map-get($mat-grey, 800),
@@ -49,17 +53,6 @@ $dark-material-theme: mat-dark-theme((
     warn: $theme-warn,  
   )
 ));
-
-// Insert custom background color
-$background-color: #012345;
-$background: map-get($dark-material-theme, background);
-$background: map_merge($background, (background: $background-color));
-$dark-material-theme: map_merge($dark-material-theme, (background: $background));
-
-
-$mainBackground: #311b92;
-$panelBackground: #000063;
-$mainText: #ffffff;
 
 $dark-colors: (
   --mainBackground: $mainBackground,

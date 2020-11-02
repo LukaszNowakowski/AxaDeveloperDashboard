@@ -3,7 +3,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ConfigurationService } from './services/configuration.service';
 
 export function initApplication(configurationService: ConfigurationService) {
-  console.log("initApplication started");
   return () => configurationService.Configure();
 }
 
