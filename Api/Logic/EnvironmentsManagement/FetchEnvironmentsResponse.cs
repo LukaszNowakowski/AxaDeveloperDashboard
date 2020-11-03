@@ -1,6 +1,5 @@
-﻿namespace Avanssur.AxaDeveloperDashboard.Api.Controllers.Environments
+﻿namespace Avanssur.AxaDeveloperDashboard.Api.Logic.EnvironmentsManagement
 {
-    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
 

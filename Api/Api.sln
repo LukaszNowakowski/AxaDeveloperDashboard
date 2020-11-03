@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{36E8A759-F854-4ECE-8B6A-AA420EA07D57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{16A19401-B917-40E1-AC3A-88AA78E0D172}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "Api\Api.csproj", "{16A19401-B917-40E1-AC3A-88AA78E0D172}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{7B25C571-C35E-4AA0-8E24-A36C98187D6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{16A19401-B917-40E1-AC3A-88AA78E0D172}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16A19401-B917-40E1-AC3A-88AA78E0D172}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16A19401-B917-40E1-AC3A-88AA78E0D172}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B25C571-C35E-4AA0-8E24-A36C98187D6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B25C571-C35E-4AA0-8E24-A36C98187D6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B25C571-C35E-4AA0-8E24-A36C98187D6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B25C571-C35E-4AA0-8E24-A36C98187D6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

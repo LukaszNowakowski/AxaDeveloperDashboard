@@ -1,7 +1,7 @@
 namespace Avanssur.AxaDeveloperDashboard.Api
 {
     using System;
-
+    using Autofac;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
@@ -21,6 +21,10 @@ namespace Avanssur.AxaDeveloperDashboard.Api
         {
             services.AddAuthorization()
                 .AddControllers();
+        }
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterModule<Logic.LogicModule>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
