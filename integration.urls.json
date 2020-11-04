@@ -1,0 +1,4 @@
+{
+    "environments": "http://localhost:6401/environments",
+    "workItems": "http://localhost:6401/workItems"
+}
