@@ -4,12 +4,14 @@ import { Store } from '@ngxs/store';
 import * as servicesState from '../../services/redux/state';
 
 export interface Link {
+  id: number;
   displayName: string;
   url: string;
   icon?: string;
 }
 
 export interface Environment {
+  id: number;
   displayName: string;
   links: Link[];
 }

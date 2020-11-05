@@ -19,6 +19,7 @@ export class EnvironmentsService {
 
   private static MapEnvironment(source: httpEnvironments.Environment) : models.Environment {
     return <models.Environment>{
+      Id: source.id,
       DisplayName: source.displayName,
       Links: source.links.map(EnvironmentsService.MapLink)
     };
@@ -26,6 +27,7 @@ export class EnvironmentsService {
 
   private static MapLink(source: httpEnvironments.Link): models.Link {
     return <models.Link>{
+      Id: source.id,
       DisplayName: source.displayName,
       Url: source.url,
       Icon: source.icon

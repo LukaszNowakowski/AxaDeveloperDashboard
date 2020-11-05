@@ -6,6 +6,7 @@ FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
 COPY ["Api/Api.csproj", "./Api/"]
 COPY ["Logic/Logic.csproj", "./Logic/"]
+COPY ["DataAccess/DataAccess.csproj", "./DataAccess/"]
 COPY ["UnitTests/UnitTests.csproj", "./UnitTests/"]
 COPY ["Api.sln", "./"]
 RUN dotnet restore "./Api.sln"

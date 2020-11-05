@@ -1,55 +1,72 @@
 ﻿namespace Avanssur.AxaDeveloperDashboard.Api.Logic.EnvironmentsManagement
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
+    using Avanssur.AxaDeveloperDashboard.Api.DataAccess.Cqrs;
+    using Avanssur.AxaDeveloperDashboard.Api.DataAccess.Environments;
 
     public class EnvironmentsService : IEnvironmentsService
     {
-        public Task<FetchEnvironmentsResponse> FetchEnvironments(FetchEnvironmentsRequest request)
+        private readonly IMediator mediator;
+
+        public EnvironmentsService(IMediator mediator)
         {
-            var result = new FetchEnvironmentsResponse(
-                 new Environment(
-                     "LOCAL",
-                     new Link(
-                         "CSA",
-                         "dashboard",
-                         "http://localhost/CustomerService"),
-                     new Link(
-                         "Private Domain",
-                         "account_circle",
-                         "http://localhost/Sandpiper.UI.FrontOffice/AGDF/DirectAssurance/Motor/Standard/Desktop/LogOn/initLogOn"),
-                     new Link(
-                         "Tools",
-                         "build",
-                         "http://localhost/Sandpiper.UI.Tools")),
-                 new Environment(
-                     "DIT01",
-                     new Link(
-                         "CSA",
-                         "dashboard",
-                         "http://ext-env1.ppglobaldirect.intraxa/CustomerService"),
-                     new Link(
-                         "Private Domain",
-                         "account_circle",
-                         "http://www-env1.ppglobaldirect.intraxa/Sales/AGDF/DirectAssurance/Motor/Standard/Desktop/LogOn/initLogOn"),
-                     new Link(
-                         "Tools",
-                         "build",
-                         "http://ext-env1.ppglobaldirect.intraxa/Tools")),
-                 new Environment(
-                     "DIT02",
-                     new Link(
-                         "CSA",
-                         "dashboard",
-                         "http://ext-env3.ppglobaldirect.intraxa/CustomerService"),
-                     new Link(
-                         "Private Domain",
-                         "account_circle",
-                         "http://www-env3.ppglobaldirect.intraxa/Sales/AGDF/DirectAssurance/Motor/Standard/Desktop/LogOn/initLogOn"),
-                     new Link(
-                         "Tools",
-                         "build",
-                         "http://ext-env3.ppglobaldirect.intraxa/Tools")));
-            return Task.FromResult(result);
+            this.mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+        }
+
+        public async Task<FetchEnvironmentsResponse> FetchEnvironments(FetchEnvironmentsRequest request)
+        {
+            var query = new FetchLinksQuery(request.UserName);
+            var queryResult = await this.mediator.Query(query);
+            var environments = queryResult
+                .Select(li => new EnvironmentData(li.EnvironmentId, li.EnvironmentName))
+                .Distinct(EnvironmentDataEqualityComparer.Default);
+            var result = environments
+                .Select(e =>
+                {
+                    var links = queryResult
+                        .Where(l => l.EnvironmentId == e.Id);
+                    return new Environment(e.Id, e.Name, links.Select(l => new Link(l.LinkId, l.LinkName, l.LinkIcon, l.Url)).ToArray());
+                });
+            return new FetchEnvironmentsResponse(result.ToArray());
+        }
+
+        private class EnvironmentData
+        {
+            public EnvironmentData(int id, string name)
+            {
+                this.Id = id;
+                this.Name = name;
+            }
+
+            public int Id { get; }
+
+            public string Name { get; }
+        }
+
+        private class EnvironmentDataEqualityComparer : IEqualityComparer<EnvironmentData>
+        {
+            private EnvironmentDataEqualityComparer()
+            {
+            }
+
+            public static EnvironmentDataEqualityComparer Default = new EnvironmentDataEqualityComparer();
+
+            public bool Equals(EnvironmentData x, EnvironmentData y)
+            {
+                if (ReferenceEquals(x, y)) return true;
+                if (ReferenceEquals(x, null)) return false;
+                if (ReferenceEquals(y, null)) return false;
+                if (x.GetType() != y.GetType()) return false;
+                return x.Id == y.Id && x.Name == y.Name;
+            }
+
+            public int GetHashCode(EnvironmentData obj)
+            {
+                return HashCode.Combine(obj.Id, obj.Name);
+            }
         }
     }
 }

@@ -8,6 +8,7 @@
         {
             base.Load(builder);
             builder.RegisterModule<EnvironmentsManagement.EnvironmentsManagementModule>();
+            builder.RegisterModule<DataAccess.DataAccessModule>();
         }
     }
 }

@@ -1,6 +1,23 @@
 version: '3'
 
 services:
+    dev.avanssur.axadeveloperdashboard.db:
+        container_name: dev.avanssur.axadeveloperdashboard.db
+        hostname: dev.avanssur.axadeveloperdashboard.db
+        image: mysql:8.0.19
+        restart: always
+        networks:
+            - dev.avanssur.axadeveloperdashboard
+        environment:
+            - MYSQL_ROOT_PASSWORD=n0Acc3ssH3r3
+            - MYSQL_USER=axadashboard
+            - MYSQL_PASSWORD=axadashboard
+            - MYSQL_DATABASE=axadashboard
+        ports:
+            - 6502:3306
+        volumes:
+            - dashboard-data:/var/lib/mysql
+
     dev.avanssur.axadeveloperdashboard.api:
         container_name: dev.avanssur.axadeveloperdashboard.api
         hostname: dev.avanssur.axadeveloperdashboard.api
@@ -8,3 +25,16 @@ services:
         restart: always
         ports:
             - 6501:80
+        depends_on:
+            - dev.avanssur.axadeveloperdashboard.db
+        networks:
+            - dev.avanssur.axadeveloperdashboard
+        environment:
+            - ConnectionStrings:AxaDashboard=Server=dev.avanssur.axadeveloperdashboard.db;Database=axadashboard;Uid=axadashboard;Pwd=axadashboard;CheckParameters=false
+
+networks:
+    dev.avanssur.axadeveloperdashboard:
+        driver: bridge
+
+volumes:
+    dashboard-data:

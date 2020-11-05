@@ -32,6 +32,7 @@
         private static Link Map(EnvironmentsManagement.Link link)
         {
             return new Link(
+                link.Id,
                 link.DisplayName,
                 link.Icon,
                 link.Url);
@@ -40,6 +41,7 @@
         private static Environment Map(EnvironmentsManagement.Environment environment)
         {
             return new Environment(
+                environment.Id,
                 environment.DisplayName,
                 environment.Links.Select(Map).ToArray());
         }
