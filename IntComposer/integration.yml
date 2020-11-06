@@ -1,0 +1,52 @@
+version: '3'
+
+services:
+    int.avanssur.axadeveloperdashboard.db:
+        container_name: int.avanssur.axadeveloperdashboard.db
+        hostname: int.avanssur.axadeveloperdashboard.db
+        image: mysql:8.0.19
+        restart: always
+        networks:
+            - int.avanssur.axadeveloperdashboard.databases
+        environment:
+            - MYSQL_ROOT_PASSWORD=n0Acc3ssH3r3
+            - MYSQL_USER=axadashboard
+            - MYSQL_PASSWORD=axadashboard
+            - MYSQL_DATABASE=axadashboard
+        volumes:
+            - int.avanssur.axadeveloperdashboard:/var/lib/mysql
+
+    int.avanssur.axadeveloperdashboard.api:
+        container_name: int.avanssur.axadeveloperdashboard.api
+        hostname: int.avanssur.axadeveloperdashboard.api
+        image: lukasznowakowskiaxa/avanssur.axadeveloperdashboard.api:integration
+        restart: always
+        depends_on:
+            - int.avanssur.axadeveloperdashboard.db
+        environment:
+            - ConnectionStrings:AxaDashboard=Server=int.avanssur.axadeveloperdashboard.db;Database=axadashboard;Uid=axadashboard;Pwd=axadashboard;CheckParameters=false
+        networks:
+            - int.avanssur.axadeveloperdashboard.databases
+        ports:
+            - 6401:80
+
+    int.avanssur.axadeveloperdashboard.ui:
+        container_name: int.avanssur.axadeveloperdashboard.ui
+        hostname: int.avanssur.axadeveloperdashboard.ui
+        image: lukasznowakowskiaxa/avanssur.axadeveloperdashboard.ui:integration
+        restart: always
+        depends_on:
+            - int.avanssur.axadeveloperdashboard.api
+        ports:
+            - 6400:80
+        networks:
+            - int.avanssur.axadeveloperdashboard.databases
+        volumes:
+            - ./integration.urls.json:/usr/share/nginx/html/assets/urls.json
+
+networks:
+    int.avanssur.axadeveloperdashboard.databases:
+        external: true
+
+volumes:
+    int.avanssur.axadeveloperdashboard:

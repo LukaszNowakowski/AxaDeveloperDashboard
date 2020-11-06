@@ -2,12 +2,15 @@
 {
     public class Link
     {
-        public Link(string displayName, string icon, string url)
+        public Link(int id, string displayName, string icon, string url)
         {
+            this.Id = id;
             this.DisplayName = displayName;
             this.Icon = icon;
             this.Url = url;
         }
+
+        public int Id { get; }
 
         public string DisplayName { get; }
 

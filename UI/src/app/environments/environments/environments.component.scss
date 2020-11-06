@@ -4,14 +4,11 @@
     gap: 10px;
 }
 
-mat-card {
-    background-color: var(--background-secondary-color);
-}
-
 mat-card-content > ul {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     list-style: none;
     margin: 0;
     padding: 0;
+    gap: 5px;
 }
