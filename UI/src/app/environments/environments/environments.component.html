@@ -9,7 +9,7 @@
         <mat-card-content>
             <ul>
                 <li *ngFor="let link of env.Links">
-                    <a mat-button color="accent" [href]="link.Url" target="_blank" [title]="link.DisplayName">
+                    <a mat-stroked-button color="accent" [href]="link.Url" target="_blank" [title]="link.DisplayName">
                         <mat-icon *ngIf="!!link.Icon">{{ link.Icon }}</mat-icon>
                         <span *ngIf="!link.Icon">{{ link.DisplayName }}</span>
                     </a>

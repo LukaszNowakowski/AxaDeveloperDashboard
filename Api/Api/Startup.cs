@@ -1,7 +1,11 @@
 namespace Avanssur.AxaDeveloperDashboard.Api
 {
     using System;
+
     using Autofac;
+
+    using Avanssur.AxaDeveloperDashboard.Api.DataAccess.DbConnector.Autofac;
+    using Avanssur.AxaDeveloperDashboard.Api.DataAccess.DbConnector.MySql;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
@@ -25,6 +29,7 @@ namespace Avanssur.AxaDeveloperDashboard.Api
         public void ConfigureContainer(ContainerBuilder builder)
         {
             builder.RegisterModule<Logic.LogicModule>();
+            builder.WithMySqlPersistence("AxaDashboard", name => this.Configuration.GetConnectionString(name));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

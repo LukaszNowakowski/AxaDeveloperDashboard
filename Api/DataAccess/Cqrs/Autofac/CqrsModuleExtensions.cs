@@ -18,7 +18,7 @@
             params Assembly[] assemblies)
         {
             builder.RegisterAssemblyTypes(assemblies)
-                .Where(t => t.IsClosedTypeOf(typeof(IQueryHandler<>)))
+                .Where(t => t.IsClosedTypeOf(typeof(IQueryHandler<,>)))
                 .AsImplementedInterfaces();
             return builder;
         }

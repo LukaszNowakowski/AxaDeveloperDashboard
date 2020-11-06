@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
     using Avanssur.AxaDeveloperDashboard.Api.DataAccess.Cqrs;
     using Avanssur.AxaDeveloperDashboard.Api.DataAccess.Environments;
@@ -16,10 +17,10 @@
             this.mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
-        public async Task<FetchEnvironmentsResponse> FetchEnvironments(FetchEnvironmentsRequest request)
+        public async Task<FetchEnvironmentsResponse> FetchEnvironments(FetchEnvironmentsRequest request, CancellationToken cancellationToken)
         {
             var query = new FetchLinksQuery(request.UserName);
-            var queryResult = await this.mediator.Query(query);
+            var queryResult = await this.mediator.Query<FetchLinksQuery, List<LinkInformation>>(query, cancellationToken);
             var environments = queryResult
                 .Select(li => new EnvironmentData(li.EnvironmentId, li.EnvironmentName))
                 .Distinct(EnvironmentDataEqualityComparer.Default);

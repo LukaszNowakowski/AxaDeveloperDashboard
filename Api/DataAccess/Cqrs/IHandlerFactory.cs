@@ -2,7 +2,8 @@
 {
     public interface IHandlerFactory
     {
-        IQueryHandler<TResult> CreateQueryHandler<TResult>()
-            where TResult : class;
+        IQueryHandler<TQuery, TResult> CreateQueryHandler<TQuery, TResult>()
+            where TResult : class
+            where TQuery : IQuery<TResult>;
     }
 }

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
     using EnvironmentsManagement = Avanssur.AxaDeveloperDashboard.Api.Logic.EnvironmentsManagement;
     using Microsoft.AspNetCore.Mvc;
@@ -20,10 +21,10 @@
 
         [Route("environments")]
         [HttpGet]
-        public async Task<IActionResult> FetchEnvironments()
+        public async Task<IActionResult> FetchEnvironments(CancellationToken cancellationToken)
         {
             var request = new EnvironmentsManagement.FetchEnvironmentsRequest(string.Empty);
-            var response = await this.environmentsService.FetchEnvironments(request);
+            var response = await this.environmentsService.FetchEnvironments(request, cancellationToken);
             var result = new FetchEnvironmentsOutput(
                 response.Environments.Select(Map).ToArray());
             return this.Ok(result);

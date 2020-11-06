@@ -12,9 +12,11 @@
             this.lifetimeScope = lifetimeScope ?? throw new ArgumentNullException(nameof(lifetimeScope));
         }
 
-        public IQueryHandler<TResult> CreateQueryHandler<TResult>() where TResult : class
+        public IQueryHandler<TQuery, TResult> CreateQueryHandler<TQuery, TResult>()
+            where TResult : class
+            where TQuery : IQuery<TResult>
         {
-            if (!this.lifetimeScope.TryResolve<IQueryHandler<TResult>>(out var result))
+            if (!this.lifetimeScope.TryResolve<IQueryHandler<TQuery, TResult>>(out var result))
             {
                 return null;
             }

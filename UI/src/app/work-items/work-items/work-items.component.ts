@@ -14,6 +14,7 @@ export class WorkItemsComponent {
   constructor(private workItemsService: WorkItemsService) { }
 
   public OpenProductionError() {
+    console.log("Started");
     var cast = parseInt(this.ProductionErrorId);
     if (!!cast) {
       this.workItemsService.CreateProductionLogUrl({ ErrorId: cast })

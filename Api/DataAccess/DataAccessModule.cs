@@ -9,7 +9,8 @@
         {
             base.Load(builder);
             builder.RegisterModule<CqrsModule>();
-            builder.RegisterHandlers(typeof(DataAccessModule).Assembly);
+            builder.RegisterModule<DbConnector.Autofac.DataAccessModule>();
+            builder.RegisterHandlers(typeof(DbConnector.Autofac.DataAccessModule).Assembly);
         }
     }
 }

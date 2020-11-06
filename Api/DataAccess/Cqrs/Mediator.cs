@@ -2,6 +2,7 @@
 {
     using System;
     using System.Globalization;
+    using System.Threading;
     using System.Threading.Tasks;
 
     public class Mediator : IMediator
@@ -14,9 +15,11 @@
             this.handlerFactory = handlerFactory ?? throw new ArgumentNullException(nameof(handlerFactory));
         }
 
-        public async Task<TResult> Query<TResult>(IQuery<TResult> query) where TResult : class
+        public async Task<TResult> Query<TQuery, TResult>(TQuery query, CancellationToken cancellationToken)
+            where TResult : class
+            where TQuery : IQuery<TResult>
         {
-            var handler = this.handlerFactory.CreateQueryHandler<TResult>();
+            var handler = this.handlerFactory.CreateQueryHandler<TQuery, TResult>();
             if (handler == null)
             {
                 var message = string.Format(
@@ -26,7 +29,7 @@
                 throw new InvalidOperationException(message);
             }
 
-            var result = await handler.Handle(query);
+            var result = await handler.Handle(query, cancellationToken);
             return result;
         }
     }
