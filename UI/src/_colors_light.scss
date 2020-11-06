@@ -1,22 +1,21 @@
-@import '~@angular/material/theming';
+@import "~@angular/material/theming";
 @include mat-core();
 
 $theme-primary: mat-palette($mat-cyan);
-$theme-accent:  mat-palette($mat-blue, A200, A100, A400);
+$theme-accent: mat-palette($mat-deep-purple);
+$theme-warn: mat-palette($mat-orange);
 
-$theme-warn:    mat-palette($mat-orange);
-
-$mainBackground: #18ffff;
-$panelBackground: #00ccbc;
-$mainText: #000000;
+$mainBackground: #ffffff;
+$panelBackground: #64b5f6;
+$mainText: mat-color($theme-accent, 500);
 
 $mat-light-theme-background: (
   status-bar: map_get($mat-grey, 300),
-  app-bar:    map_get($mat-grey, 100),
+  app-bar: map_get($mat-grey, 100),
   background: map_get($mat-grey, 50),
-  hover:      rgba(black, 0.04),
-  card:       $panelBackground,
-  dialog:     white,
+  hover: rgba(black, 0.04),
+  card: $panelBackground,
+  dialog: white,
   disabled-button: rgba(black, 0.12),
   raised-button: white,
   focused-button: $dark-focused,
@@ -29,33 +28,35 @@ $mat-light-theme-background: (
 );
 
 $mat-light-theme-foreground: (
-  base:              black,
-  divider:           $dark-dividers,
-  dividers:          $dark-dividers,
-  disabled:          $dark-disabled-text,
-  disabled-button:   rgba(black, 0.26),
-  disabled-text:     $dark-disabled-text,
-  elevation:         black,
-  hint-text:         $dark-disabled-text,
-  secondary-text:    $dark-secondary-text,
-  icon:              rgba(black, 0.54),
-  icons:             rgba(black, 0.54),
-  text:              rgba(black, 0.87),
-  slider-min:        rgba(black, 0.87),
-  slider-off:        rgba(black, 0.26),
-  slider-off-active: rgba(black, 0.38),
+  base: black,
+  divider: $dark-dividers,
+  dividers: $dark-dividers,
+  disabled: $dark-disabled-text,
+  disabled-button: rgba(black, 0.26),
+  disabled-text: $dark-disabled-text,
+  elevation: black,
+  hint-text: $dark-disabled-text,
+  secondary-text: $dark-secondary-text,
+  icon: $mainText,
+  icons: $mainText,
+  text: $mainText,
+  slider-min: $mainText,
+  slider-off: $mainText,
+  slider-off-active: $mainText,
 );
 
-$light-material-theme: mat-light-theme((
-  color: (
-    primary: $theme-primary,
-    accent: $theme-accent,
-    warn: $theme-warn,  
+$light-material-theme: mat-light-theme(
+  (
+    color: (
+      primary: $theme-primary,
+      accent: $theme-accent,
+      warn: $theme-warn,
+    ),
   )
-));
+);
 
 $light-colors: (
   --mainBackground: $mainBackground,
   --panelBackground: $panelBackground,
-  --mainText: $mainText
+  --mainText: $mainText,
 );
