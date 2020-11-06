@@ -15,6 +15,7 @@
             this.LinkId = linkId;
             this.LinkIcon = linkIcon;
             this.LinkName = linkName;
+            this.Url = url;
         }
 
         public int EnvironmentId { get; set; }
