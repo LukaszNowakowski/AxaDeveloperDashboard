@@ -23,8 +23,10 @@ namespace Avanssur.AxaDeveloperDashboard.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddAuthorization()
-                .AddControllers();
+                .AddControllers()
+                .AddNewtonsoftJson();
         }
         public void ConfigureContainer(ContainerBuilder builder)
         {
@@ -49,7 +51,10 @@ namespace Avanssur.AxaDeveloperDashboard.Api
 
             app.UseAuthorization();
 
-            app.UseCors(builder => builder.AllowAnyOrigin());
+            app.UseCors(builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod());
 
             app.UseEndpoints(endpoints =>
             {

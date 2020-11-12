@@ -17,6 +17,16 @@ export class EnvironmentsService {
       });
   }
 
+  public AddEnvironment(request: models.AddEnvironmentRequest) : Promise<models.AddEnvironmentResponse> {
+    let env = request.Environment;
+    return this.httpEnvironmentsService.AddEnvironment({ id: -1, displayName: env.DisplayName, links: []})
+      .then(result => {
+        return {
+          Created: result.created
+        };
+      });
+  }
+
   private static MapEnvironment(source: httpEnvironments.Environment) : models.Environment {
     return <models.Environment>{
       Id: source.id,

@@ -7,17 +7,14 @@ CREATE PROCEDURE `FetchLinks`
 BEGIN
 	SELECT
 		envs.id AS EnvironmentId,
-		envs.displayName AS EnvironmentName,
 		li.id AS LinkId,
 		li.displayName AS LinkName,
 		li.icon AS LinkIcon,
-		li.url AS Url
+		li.url AS Url,
+		li.order AS LinkOrder
 		FROM
 			environments AS envs
 			JOIN links AS li
-				ON envs.id = li.environmentId
-		ORDER BY
-			envs.order ASC,
-			li.order ASC;
+				ON envs.id = li.environmentId;
 END $$
 DELIMITER ;

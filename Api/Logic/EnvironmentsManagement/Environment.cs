@@ -5,16 +5,19 @@
 
     public class Environment
     {
-        public Environment(int id, string displayName, params Link[] links)
+        public Environment(int id, string displayName, int order, params Link[] links)
         {
             this.Id = id;
             this.DisplayName = displayName;
+            this.Order = order;
             this.Links = new ReadOnlyCollection<Link>((links ?? Enumerable.Empty<Link>()).ToList());
         }
 
         public int Id { get; }
 
         public string DisplayName { get; }
+
+        public int Order { get; }
 
         public ReadOnlyCollection<Link> Links { get; }
     }

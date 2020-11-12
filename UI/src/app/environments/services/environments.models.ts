@@ -17,3 +17,11 @@ export interface FetchEnvironmentsRequest {
 export interface FetchEnvironmentsResponse {
     Environments: Environment[];
 }
+
+export interface AddEnvironmentRequest {
+    Environment: Environment;
+}
+
+export interface AddEnvironmentResponse {
+    Created: boolean;
+}

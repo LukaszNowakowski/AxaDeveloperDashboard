@@ -9,11 +9,11 @@
     using Avanssur.AxaDeveloperDashboard.Api.DataAccess.Cqrs;
     using Avanssur.AxaDeveloperDashboard.Api.DataAccess.DbConnector;
 
-    public class FetchLinksQueryHandler : IQueryHandler<FetchLinksQuery, List<LinkInformation>>
+    class FetchEnvironmentsQueryHandler : IQueryHandler<FetchEnvironmentsQuery, List<EnvironmentInformation>>
     {
         private readonly IPersistence persistence;
 
-        public FetchLinksQueryHandler(
+        public FetchEnvironmentsQueryHandler(
             IPersistenceProvider provider)
         {
             if (provider == null)
@@ -24,20 +24,17 @@
             this.persistence = provider.Create("AxaDashboard");
         }
 
-        public async Task<List<LinkInformation>> Handle(FetchLinksQuery query, CancellationToken cancellationToken)
+        public async Task<List<EnvironmentInformation>> Handle(FetchEnvironmentsQuery query, CancellationToken cancellationToken)
         {
             var result = await this.persistence.RetrieveDataAsync(
-                "FetchLinks",
-                new[] {new CommandParameter("userNameParam", query.UserName)},
+                "FetchEnvironments",
+                new[] { new CommandParameter("userNameParam", query.UserName) },
                 r =>
                 {
-                    return new LinkInformation(
+                    return new EnvironmentInformation(
                         (int) r["EnvironmentId"],
-                        (int) r["LinkId"],
-                        (string) r["LinkName"],
-                        (string) r["LinkIcon"],
-                        (string) r["Url"],
-                        (int)r["LinkOrder"]);
+                        (string) r["EnvironmentName"],
+                        (int) r["EnvironmentOrder"]);
                 },
                 null,
                 cancellationToken);

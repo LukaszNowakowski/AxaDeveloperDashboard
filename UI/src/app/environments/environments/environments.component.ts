@@ -10,6 +10,8 @@ import { EnvironmentsService } from '../services/environments.service';
 export class EnvironmentsComponent implements OnInit {
   public Environments: EnvironmentsModels.Environment[] = [];
 
+  public NewEnvName: string = "";
+
   constructor(private environments: EnvironmentsService) { }
 
   ngOnInit(): void {
@@ -17,5 +19,24 @@ export class EnvironmentsComponent implements OnInit {
     .then(result => {
       this.Environments = result.Environments;
     })
+  }
+
+  public AddEnvironment() {
+    var request: EnvironmentsModels.AddEnvironmentRequest = {
+      Environment: {
+        DisplayName: this.NewEnvName,
+        Id: -1,
+        Links: []
+      }
+    };
+    this.environments.AddEnvironment(request)
+      .then(r => {
+        if (r.Created) {
+          this.NewEnvName = "";
+        }
+        else {
+          alert("Error");
+        }
+      })
   }
 }

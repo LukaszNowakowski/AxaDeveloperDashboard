@@ -17,4 +17,13 @@
             </ul>
         </mat-card-content>
     </mat-card>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                <mat-icon>api</mat-icon>
+                <input matInput type="text" [(ngModel)]="NewEnvName" />
+                <button (click)="AddEnvironment()">Add</button>
+            </mat-card-title>
+        </mat-card-header>
+    </mat-card>
 </div>

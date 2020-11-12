@@ -23,5 +23,15 @@
 
             return result;
         }
+
+        public ICommandHandler<TCommand> CreateCommandHandler<TCommand>() where TCommand : ICommand
+        {
+            if (!this.lifetimeScope.TryResolve<ICommandHandler<TCommand>>(out var result))
+            {
+                return null;
+            }
+
+            return result;
+        }
     }
 }

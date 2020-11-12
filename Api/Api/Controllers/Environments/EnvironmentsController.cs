@@ -7,6 +7,7 @@
     using EnvironmentsManagement = Avanssur.AxaDeveloperDashboard.Api.Logic.EnvironmentsManagement;
     using Microsoft.AspNetCore.Mvc;
 
+    [Route("environments")]
     [ApiController]
     public class EnvironmentsController : ControllerBase
     {
@@ -18,8 +19,6 @@
             this.environmentsService =
                 environmentsService ?? throw new ArgumentNullException(nameof(environmentsService));
         }
-
-        [Route("environments")]
         [HttpGet]
         public async Task<IActionResult> FetchEnvironments(CancellationToken cancellationToken)
         {
@@ -27,6 +26,17 @@
             var response = await this.environmentsService.FetchEnvironments(request, cancellationToken);
             var result = new FetchEnvironmentsOutput(
                 response.Environments.Select(Map).ToArray());
+            return this.Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddEnvironment([FromBody]Environment environment, CancellationToken cancellationToken)
+        {
+            var request = new EnvironmentsManagement.AddEnvironmentRequest(
+                string.Empty,
+                new EnvironmentsManagement.Environment(-1, environment.DisplayName, -1));
+            var response = await this.environmentsService.AddEnvironment(request, cancellationToken);
+            var result = new AddEnvironmentOutput(response.Created);
             return this.Ok(result);
         }
 

@@ -6,5 +6,7 @@
     public interface IEnvironmentsService
     {
         Task<FetchEnvironmentsResponse> FetchEnvironments(FetchEnvironmentsRequest request, CancellationToken cancellationToken);
+
+        Task<AddEnvironmentResponse> AddEnvironment(AddEnvironmentRequest request, CancellationToken cancellationToken);
     }
 }

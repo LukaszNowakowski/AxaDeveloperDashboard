@@ -8,5 +8,8 @@
         Task<TResult> Query<TQuery, TResult>(TQuery query, CancellationToken cancellationToken)
             where TResult : class
             where TQuery : IQuery<TResult>;
+
+        Task Handle<TCommand>(TCommand command, CancellationToken cancellationToken)
+            where TCommand : ICommand;
     }
 }
