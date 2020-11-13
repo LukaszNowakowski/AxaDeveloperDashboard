@@ -1,5 +1,5 @@
 <div class="environmentsContainer">
-    <mat-card *ngFor="let env of Environments">
+    <mat-card *ngFor="let env of Environments | async">
         <mat-card-header>
             <mat-card-title>
                 <mat-icon>api</mat-icon>

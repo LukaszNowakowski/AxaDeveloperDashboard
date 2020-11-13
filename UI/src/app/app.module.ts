@@ -14,8 +14,10 @@ import { WorkItemsModule } from './work-items/work-items.module';
 import { StyleTogglerService } from './services/style-toggler.service';
 import { ApplicationInitializationModule } from './application-initialization/application-initialization.module';
 import { ServicesState } from './services/redux/state';
+import { EnvironmentsState } from './environments/redux/state';
 
-export function themeFactory(themeService: StyleTogglerService) {
+export function themeFactory(
+  themeService: StyleTogglerService) {
   return () => themeService.setThemeOnStart();
 }
 
@@ -31,7 +33,7 @@ export function themeFactory(themeService: StyleTogglerService) {
     AppRoutingModule,
     GeneralModule,
     ApplicationInitializationModule,
-    NgxsModule.forRoot([ServicesState], {}),
+    NgxsModule.forRoot([ServicesState, EnvironmentsState], {}),
     NgxsReduxDevtoolsPluginModule.forRoot()
   ],
   providers: [

@@ -3,12 +3,14 @@ export interface Link {
     DisplayName: string;
     Url: string;
     Icon?: string;
+    Order: number;
 }
 
 export interface Environment {
     Id: number;
     DisplayName: string;
     Links: Link[];
+    Order: number;
 }
 
 export interface FetchEnvironmentsRequest {

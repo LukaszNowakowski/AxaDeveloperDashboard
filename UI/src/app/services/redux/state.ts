@@ -3,7 +3,6 @@ import { Action, State, StateContext } from '@ngxs/store';
 
 import * as model from './model';
 import * as actions from './actions';
-import { couldStartTrivia } from 'typescript';
 
 @State<model.ApisUrls>({
     name: 'services',

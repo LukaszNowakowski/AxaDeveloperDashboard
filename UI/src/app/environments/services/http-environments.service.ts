@@ -2,18 +2,19 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngxs/store';
 import * as servicesState from '../../services/redux/state';
-import { environment } from 'src/environments/environment';
 
 export interface Link {
   id: number;
   displayName: string;
   url: string;
   icon?: string;
+  order: number;
 }
 
 export interface Environment {
   id: number;
   displayName: string;
+  order: number;
   links: Link[];
 }
 

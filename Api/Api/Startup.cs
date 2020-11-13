@@ -51,8 +51,10 @@ namespace Avanssur.AxaDeveloperDashboard.Api
 
             app.UseAuthorization();
 
+            var allowedOriginsSection = this.Configuration.GetSection("AllowedOrigins");
+            var origins = allowedOriginsSection.Value.Split(";", StringSplitOptions.RemoveEmptyEntries);
             app.UseCors(builder => builder
-                .AllowAnyOrigin()
+                .WithOrigins(origins)
                 .AllowAnyHeader()
                 .AllowAnyMethod());
 
