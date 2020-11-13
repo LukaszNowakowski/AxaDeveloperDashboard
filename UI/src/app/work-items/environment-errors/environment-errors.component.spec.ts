@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProductionErrorsComponent } from './production-errors.component';
+import { EnvironmentErrorsComponent } from './environment-errors.component';
 
-describe('ProductionErrorsComponent', () => {
-  let component: ProductionErrorsComponent;
-  let fixture: ComponentFixture<ProductionErrorsComponent>;
+describe('EnvironmentErrorsComponent', () => {
+  let component: EnvironmentErrorsComponent;
+  let fixture: ComponentFixture<EnvironmentErrorsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProductionErrorsComponent ]
+      declarations: [ EnvironmentErrorsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProductionErrorsComponent);
+    fixture = TestBed.createComponent(EnvironmentErrorsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,3 +1,8 @@
 <div class="workItemsContainer">
-    <workItems-production-errors></workItems-production-errors>
+    <workItems-environment-errors
+        [Title]="'PROD error'"
+        [Label]="'Production error id'"
+        [OpeningMessage]="'Production log is being opened.'"
+        [LogUrlRetriever]="GetProductionErrorUrl">
+    </workItems-environment-errors>
 </div>

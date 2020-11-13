@@ -1,13 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { WorkItemsService } from '../services/work-items.service';
 
 @Component({
-  selector: 'workItems-production-errors',
-  templateUrl: './production-errors.component.html',
-  styleUrls: ['./production-errors.component.scss']
+  selector: 'workItems-environment-errors',
+  templateUrl: './environment-errors.component.html',
+  styleUrls: ['./environment-errors.component.scss']
 })
-export class ProductionErrorsComponent implements OnInit {
+export class EnvironmentErrorsComponent implements OnInit {
+  @Input() public Title: string = "";
+
+  @Input() public Label: string = "";
+
+  @Input() public OpeningMessage: string = "";
+
+  @Input() public LogUrlRetriever: (errorId: number) => Promise<string> = e => Promise.resolve("");
+
   public form: FormGroup;
 
   public DisplayMessage: boolean = false;
@@ -33,20 +41,21 @@ export class ProductionErrorsComponent implements OnInit {
 
     let cast = parseInt(this.ProductionErrorId.value);
     if (!!cast) {
-      this.workItemsService.CreateProductionLogUrl({ ErrorId: cast })
-        .then(r => {
-          if (r.Success) {
+      this.LogUrlRetriever(cast)
+        .then(url => {
+          if (!!url) {
             this.DisplayMessage = true;
-            setTimeout(() => window.open(r.Url), 800);
+            setTimeout(() => window.open(url), 800);
           }
           else {
-            alert(r.Error);
+            alert("Error occured");
           }
         })
         .finally(() => {
           setTimeout(() => {
             this.DisplayMessage = false;
-            this.ProductionErrorId.setValue("");
+            this.form.reset();
+            this.ProductionErrorId.setErrors(null);
           }, 2000);
         });
     }
