@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { WorkItemsService } from '../services/work-items.service';
 
 @Component({
@@ -6,16 +7,31 @@ import { WorkItemsService } from '../services/work-items.service';
   templateUrl: './work-items.component.html',
   styleUrls: ['./work-items.component.scss']
 })
-export class WorkItemsComponent {
-  public ProductionErrorId: string = "";
+export class WorkItemsComponent implements OnInit {
+  public form: FormGroup;
 
   public DisplayProductionErrorOpeningMessage: boolean = false;
 
-  constructor(private workItemsService: WorkItemsService) { }
+  constructor(
+    private workItemsService: WorkItemsService,
+    private fb: FormBuilder) { }
+
+  ngOnInit() {
+    this.form = this.fb.group({
+      productionErrorId: ["", [Validators.required]]
+    });
+  }
+
+  get ProductionErrorId(): AbstractControl {
+    return this.form.get("productionErrorId");
+  }
 
   public OpenProductionError() {
-    console.log("Started");
-    var cast = parseInt(this.ProductionErrorId);
+    if (!this.form.valid) {
+      return;
+    }
+
+    let cast = parseInt(this.ProductionErrorId.value);
     if (!!cast) {
       this.workItemsService.CreateProductionLogUrl({ ErrorId: cast })
         .then(r => {

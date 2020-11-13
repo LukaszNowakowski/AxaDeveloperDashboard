@@ -1,5 +1,5 @@
 <div class="workItemsContainer">
-    <form (submit)="OpenProductionError()">
+    <form [formGroup]="form" (submit)="OpenProductionError()">
         <mat-card>
             <mat-card-header>
                 <mat-card-title>PROD errors</mat-card-title>
@@ -7,14 +7,14 @@
             <mat-card-content>
                 <mat-form-field>
                     <mat-label>Production error id</mat-label>
-                    <input matInput placeholder="Error id" [(value)]="ProductionErrorId">
+                    <input matInput placeholder="Error id" formControlName="productionErrorId">
                 </mat-form-field>
                 <div *ngIf="DisplayProductionErrorOpeningMessage">
                     Production log is being opened.
                 </div>
             </mat-card-content>
             <mat-card-actions>
-                <button mat-raised-button color="accent" type="submit">
+                <button mat-raised-button color="accent" type="submit" [disabled]="form.disabled || !form.valid">
                     Open
                 </button>
             </mat-card-actions>

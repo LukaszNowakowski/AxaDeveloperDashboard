@@ -39,7 +39,6 @@ export class HttpEnvironmentsService {
 
   public AddEnvironment(request: Environment): Promise<AddEnvironmentResponse> {
     var baseAddress = this.store.selectSnapshot(servicesState.ServicesState).environments;
-    console.log(baseAddress);
     return this.http.post<AddEnvironmentResponse>(
       baseAddress,
       request)
