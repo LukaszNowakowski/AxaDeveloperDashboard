@@ -5,7 +5,7 @@ import { EnvironmentsService } from '../environments/services/environments.servi
 
 export function initApplication(
   configurationService: ConfigurationService,
-  environmentsService: EnvironmentsService) {
+  environmentsService: EnvironmentsService): () => Promise<void> {
   return () => configurationService.Configure()
     .then(() => {
       return environmentsService.RefreshEnvironments();

@@ -8,8 +8,8 @@ import { EnvironmentsService } from './services/environments.service';
 import { EnvironmentsState } from './redux/state';
 
 const ROUTES: Routes = [
-  { path: "environments", component: EnvironmentsComponent }
-]
+  { path: 'environments', component: EnvironmentsComponent },
+];
 
 @NgModule({
   declarations: [

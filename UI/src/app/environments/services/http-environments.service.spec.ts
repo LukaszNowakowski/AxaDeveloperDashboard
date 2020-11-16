@@ -6,7 +6,6 @@ import * as state from '../../services/redux/state';
 
 describe('HttpEnvironmentsService', () => {
   let service: HttpEnvironmentsService;
-  let store: Store;
 
   beforeEach(() => {
     TestBed.configureTestingModule({

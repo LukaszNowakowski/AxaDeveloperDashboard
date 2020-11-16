@@ -4,7 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { GlobalModule } from '../global.module';
 
 const ROUTES: Routes = [
-  { path: "home", component: HomeComponent },
+  { path: 'home', component: HomeComponent },
 ];
 
 @NgModule({

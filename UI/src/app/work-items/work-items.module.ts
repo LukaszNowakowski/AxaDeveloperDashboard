@@ -5,8 +5,8 @@ import { GlobalModule } from '../global.module';
 import { EnvironmentErrorsComponent } from './environment-errors/environment-errors.component';
 
 const ROUTES: Routes = [
-  { path: "workItems", component: WorkItemsComponent }
-]
+  { path: 'workItems', component: WorkItemsComponent }
+];
 
 @NgModule({
   declarations: [

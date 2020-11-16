@@ -14,7 +14,7 @@ export class WorkItemsService {
         return { Success: true, Url: result };
       })
       .catch(error => {
-        return { Success: false, Url: "", Error: error };
+        return { Success: false, Url: '', Error: error };
       });
   }
 }

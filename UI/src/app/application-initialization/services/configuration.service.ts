@@ -12,10 +12,10 @@ export class ConfigurationService {
   constructor(private client: HttpClient, private store: Store) { }
 
   public Configure(): Promise<any> {
-    return this.client.get<serviceModels.ApisUrls>("/assets/urls.json")
+    return this.client.get<serviceModels.ServicesModel>('/assets/urls.json')
       .toPromise()
       .then(urls => {
-        return this.store.dispatch(new actions.Actions.SetupApiUrls(urls))
+        return this.store.dispatch(new actions.SetupApiUrls(urls))
           .toPromise();
       });
   }

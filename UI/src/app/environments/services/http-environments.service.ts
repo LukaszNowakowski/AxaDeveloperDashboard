@@ -33,13 +33,13 @@ export class HttpEnvironmentsService {
   constructor(private http: HttpClient, private store: Store) { }
 
   public FetchEnvironments(): Promise<FetchEnvironmentsResponse> {
-    var baseAddress = this.store.selectSnapshot(servicesState.ServicesState).environments;
+    const baseAddress = this.store.selectSnapshot(servicesState.ServicesState).environments;
     return this.http.get<FetchEnvironmentsResponse>(baseAddress)
       .toPromise();
   }
 
   public AddEnvironment(request: Environment): Promise<AddEnvironmentResponse> {
-    var baseAddress = this.store.selectSnapshot(servicesState.ServicesState).environments;
+    const baseAddress = this.store.selectSnapshot(servicesState.ServicesState).environments;
     return this.http.post<AddEnvironmentResponse>(
       baseAddress,
       request)

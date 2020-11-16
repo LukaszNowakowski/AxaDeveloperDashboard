@@ -8,7 +8,7 @@ describe('WorkItemsService', () => {
   let httpService: HttpWorkItemsService;
 
   beforeEach(() => {
-    httpService = jasmine.createSpyObj(HttpWorkItemsService, ["GetProductionLogPath"]);
+    httpService = jasmine.createSpyObj(HttpWorkItemsService, ['GetProductionLogPath']);
     TestBed.configureTestingModule({
       providers: [
         { provide: HttpWorkItemsService, useValue: httpService }

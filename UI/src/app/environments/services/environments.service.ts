@@ -12,22 +12,22 @@ export class EnvironmentsService {
     private httpEnvironmentsService: httpEnvironments.HttpEnvironmentsService,
     private store: Store) { }
 
-  public RefreshEnvironments() {
+  public RefreshEnvironments(): Promise<any> {
     return this.httpEnvironmentsService.FetchEnvironments()
       .then(envs => {
-        return this.store.dispatch(new actions.Actions.SetEnvironments(envs.environments))
-          .toPromise()
+        return this.store.dispatch(new actions.SetEnvironments(envs.environments))
+          .toPromise();
       });
   }
 
   public AddEnvironment(request: models.AddEnvironmentRequest): Promise<models.AddEnvironmentResponse> {
-    let env = request.Environment;
+    const env = request.Environment;
     return this.httpEnvironmentsService.AddEnvironment({ id: -1, displayName: env.DisplayName, order: -1, links: [] })
       .then(result => {
         if (result.created) {
           return this.httpEnvironmentsService.FetchEnvironments()
             .then(envs => {
-              return this.store.dispatch(new actions.Actions.SetEnvironments(envs.environments))
+              return this.store.dispatch(new actions.SetEnvironments(envs.environments))
                 .toPromise()
                 .then(_ => {
                   return { Created: true };

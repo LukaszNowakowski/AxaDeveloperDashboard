@@ -17,7 +17,7 @@ import { ServicesState } from './services/redux/state';
 import { EnvironmentsState } from './environments/redux/state';
 
 export function themeFactory(
-  themeService: StyleTogglerService) {
+  themeService: StyleTogglerService): () => void {
   return () => themeService.setThemeOnStart();
 }
 

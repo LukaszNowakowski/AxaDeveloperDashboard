@@ -17,7 +17,7 @@ export class WorkItemsComponent {
           return r.Url;
         }
         else {
-          return "";
+          return '';
         }
       });
   }

@@ -8,9 +8,9 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Dashboard';
 
-  public SideBarVisible: boolean = true;
+  public SideBarVisible = true;
 
-  public SwitchSideBarVisibility() {
+  public SwitchSideBarVisibility(): void {
     this.SideBarVisible = !this.SideBarVisible;
   }
 }

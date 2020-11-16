@@ -1,5 +1,4 @@
-export interface ApisUrls {
+export interface ServicesModel {
     environments: string;
     workItems: string;
   }
-  

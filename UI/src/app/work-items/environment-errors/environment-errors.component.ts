@@ -3,43 +3,43 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { WorkItemsService } from '../services/work-items.service';
 
 @Component({
-  selector: 'workItems-environment-errors',
+  selector: 'app-work-items-environment-errors',
   templateUrl: './environment-errors.component.html',
   styleUrls: ['./environment-errors.component.scss']
 })
 export class EnvironmentErrorsComponent implements OnInit {
-  @Input() public Title: string = "";
-
-  @Input() public Label: string = "";
-
-  @Input() public OpeningMessage: string = "";
-
-  @Input() public LogUrlRetriever: (errorId: number) => Promise<string> = e => Promise.resolve("");
-
-  public form: FormGroup;
-
-  public DisplayMessage: boolean = false;
 
   constructor(
     private workItemsService: WorkItemsService,
     private fb: FormBuilder) { }
 
-  ngOnInit() {
+  get ProductionErrorId(): AbstractControl {
+    return this.form.get('productionErrorId');
+  }
+  @Input() public Title = '';
+
+  @Input() public Label = '';
+
+  @Input() public OpeningMessage = '';
+
+  public form: FormGroup;
+
+  public DisplayMessage = false;
+
+  @Input() public LogUrlRetriever: (errorId: number) => Promise<string> = e => Promise.resolve('');
+
+  ngOnInit(): void {
     this.form = this.fb.group({
-      productionErrorId: ["", [Validators.required]]
+      productionErrorId: ['', [Validators.required]]
     });
   }
 
-  get ProductionErrorId(): AbstractControl {
-    return this.form.get("productionErrorId");
-  }
-
-  public OpenError() {
+  public OpenError(): void {
     if (!this.form.valid) {
       return;
     }
 
-    let cast = parseInt(this.ProductionErrorId.value);
+    const cast = parseInt(this.ProductionErrorId.value, 10);
     if (!!cast) {
       this.LogUrlRetriever(cast)
         .then(url => {
@@ -48,7 +48,7 @@ export class EnvironmentErrorsComponent implements OnInit {
             setTimeout(() => window.open(url), 800);
           }
           else {
-            alert("Error occured");
+            alert('Error occured');
           }
         })
         .finally(() => {

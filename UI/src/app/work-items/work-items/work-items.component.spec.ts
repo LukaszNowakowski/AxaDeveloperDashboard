@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormBuilder } from '@angular/forms';
 import { WorkItemsService } from '../services/work-items.service';
 
 import { WorkItemsComponent } from './work-items.component';
@@ -9,12 +10,13 @@ describe('WorkItemsComponent', () => {
   let service: WorkItemsService;
 
   beforeEach(async(() => {
-    service = jasmine.createSpyObj(WorkItemsService, ["CreateProductionLogUrl"]);
+    service = jasmine.createSpyObj(WorkItemsService, ['CreateProductionLogUrl']);
     TestBed.configureTestingModule({
       declarations: [
         WorkItemsComponent
       ],
       providers: [
+        FormBuilder,
         { provide: WorkItemsService, useValue: service }
       ]
     })

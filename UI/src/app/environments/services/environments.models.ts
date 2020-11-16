@@ -13,13 +13,6 @@ export interface Environment {
     Order: number;
 }
 
-export interface FetchEnvironmentsRequest {
-}
-
-export interface FetchEnvironmentsResponse {
-    Environments: Environment[];
-}
-
 export interface AddEnvironmentRequest {
     Environment: Environment;
 }

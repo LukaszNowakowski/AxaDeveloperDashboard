@@ -2,7 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { EnvironmentsService } from '../services/environments.service';
 
 import { EnvironmentsComponent } from './environments.component';
-import * as serviceModel from '../../services/redux/model';
+import * as state from '../redux/state';
+import { NgxsModule } from '@ngxs/store';
 
 describe('EnvironmentsComponent', () => {
   let component: EnvironmentsComponent;
@@ -10,9 +11,11 @@ describe('EnvironmentsComponent', () => {
   let service: EnvironmentsService;
 
   beforeEach(async(() => {
-    service = jasmine.createSpyObj(EnvironmentsService, ["FetchEnvironments"]);
-    service.FetchEnvironments = jasmine.createSpy("FetchEnvironments").and.returnValue(Promise.resolve<serviceModel.ApisUrls>({ environments: '', workItems: ''}))
+    service = jasmine.createSpyObj(EnvironmentsService, ['RefreshEnvironments']);
     TestBed.configureTestingModule({
+      imports: [
+        NgxsModule.forRoot([state.EnvironmentsState])
+      ],
       declarations: [
         EnvironmentsComponent
       ],

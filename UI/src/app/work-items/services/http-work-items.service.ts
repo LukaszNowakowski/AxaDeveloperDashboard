@@ -10,8 +10,8 @@ export class HttpWorkItemsService {
    constructor(private http: HttpClient, private store: Store) { }
 
   public GetProductionLogPath(errorId: number): Promise<string> {
-    var baseAddress = this.store.selectSnapshot(servicesState.ServicesState).workItems;
-    let path = `${baseAddress}/productionLogPath/${errorId}`;
+    const baseAddress = this.store.selectSnapshot(servicesState.ServicesState).workItems;
+    const path = `${baseAddress}/productionLogPath/${errorId}`;
     return this.http.get<string>(path, {})
       .toPromise();
   }

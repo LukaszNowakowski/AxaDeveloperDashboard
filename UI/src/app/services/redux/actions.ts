@@ -1,8 +1,6 @@
-import * as model from './model';
+import * as models from './model';
 
-export namespace Actions {
-    export class SetupApiUrls {
-        static readonly type: string = "[Services] Setup urls";
-        constructor(public model: model.ApisUrls) { }
-    }
+export class SetupApiUrls {
+    static readonly type: string = '[Services] Setup urls';
+    constructor(public model: models.ServicesModel) { }
 }
