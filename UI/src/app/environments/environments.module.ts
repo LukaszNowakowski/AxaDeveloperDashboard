@@ -4,11 +4,11 @@ import { GlobalModule } from '../global.module';
 import { RouterModule, Routes } from '@angular/router';
 
 import { HttpEnvironmentsService } from './services/http-environments.service';
-import { EnvironmentsService } from './services/environments.service';
+import { AuthGuard } from '../guards/auth-guard';
 import { EnvironmentsState } from './redux/state';
 
 const ROUTES: Routes = [
-  { path: 'environments', component: EnvironmentsComponent },
+  { path: 'environments', component: EnvironmentsComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

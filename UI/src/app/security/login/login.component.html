@@ -1,0 +1,30 @@
+<div id="contentContainer">
+    <form [formGroup]="loginForm" (submit)="Authenticate()">
+      <h2>Logowanie</h2>
+      <div class="formFields">
+        <mat-form-field>
+          <input matInput placeholder="Nazwa użytkownika" formControlName="userName" />
+          <div *ngIf="DisplayErrors(UserName)">
+            <mat-error *ngIf="UserName.errors.required">
+              Nazwa użytkownika jest wymagana
+            </mat-error>
+          </div>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="password" placeholder="Hasło" formControlName="password" />
+          <div *ngIf="DisplayErrors(Password)">
+            <mat-error *ngIf="Password.errors.required">
+              Musisz podać hasło
+            </mat-error>
+          </div>
+        </mat-form-field>
+        <div class="error" *ngIf="!!errorMessage">
+          {{errorMessage}}
+        </div>
+        <div class="buttons">
+          <button type="submit" mat-raised-button color="primary" [disabled]="loginForm.disabled || !loginForm.valid">Zaloguj się</button>
+          <button type="button" mat-raised-button color="primary" [disabled]="loginForm.disabled" (click)="CreateAccount()">Utwórz konto</button>
+        </div>
+      </div>
+    </form>
+  </div>

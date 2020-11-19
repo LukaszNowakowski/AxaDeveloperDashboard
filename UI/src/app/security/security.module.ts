@@ -1,12 +1,22 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { RouterModule, Routes } from '@angular/router';
+import { CreateAccountComponent } from './create-account/create-account.component';
+import { LoginComponent } from './login/login.component';
+import { GlobalModule } from '../global.module';
 
-
+const ROUTES: Routes = [
+  { path: 'login', component: LoginComponent },
+  { path: 'createAccount', component: CreateAccountComponent },
+];
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    CreateAccountComponent,
+    LoginComponent
+  ],
   imports: [
-    CommonModule
+    GlobalModule,
+    RouterModule.forRoot(ROUTES),
   ]
 })
 export class SecurityModule { }

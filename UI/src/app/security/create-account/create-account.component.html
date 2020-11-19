@@ -1,0 +1,88 @@
+<div id="contentContainer">
+    <form [formGroup]="createAccountForm" (submit)="CreateAccount()" autocomplete="off">
+      <h2>Logowanie</h2>
+      <div class="formFields">
+        <mat-form-field>
+          <input matInput placeholder="Nazwa użytkownika" formControlName="userName" />
+          <div *ngIf="DisplayErrors(UserName)" class="alert alert-danger">
+            <mat-error *ngIf="UserName.errors.required">
+              Nazwa użytkownika jest wymagana
+            </mat-error>
+            <mat-error *ngIf="UserName.errors.minlength">
+              Nazwa użytkownika musi mieć co najmniej {{ UserName.errors.minlength.requiredLength }} znaków.
+            </mat-error>
+            <mat-error *ngIf="UserName.errors.maxlength">
+              Nazwa użytkownika musi mieć nie więcej niż {{ UserName.errors.maxlength.requiredLength }} znaków.
+            </mat-error>
+            <mat-error *ngIf="UserName.errors.pattern">
+              Nazwa użytkownika może zawierać duże i małe litery, cyfry i znak "_".
+            </mat-error>
+          </div>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="password" placeholder="Hasło" formControlName="password" />
+          <div *ngIf="DisplayErrors(Password)" class="alert alert-danger">
+            <mat-error *ngIf="Password.errors.required">
+              Musisz podać hasło
+            </mat-error>
+            <mat-error *ngIf="Password.errors.minlength">
+              Hasło musi mieć co najmniej {{ Password.errors.minlength.requiredLength }} znaków.
+            </mat-error>
+            <mat-error *ngIf="Password.errors.passwordweak">
+              Hasło jest zbyt proste do odgadnięcia
+            </mat-error>
+          </div>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="password" placeholder="Powtórz hasło" formControlName="repeatPassword" />
+          <div *ngIf="DisplayErrors(RepeatPassword)" class="alert alert-danger">
+            <mat-error *ngIf="RepeatPassword.errors.required">
+              Powtórz hasło dla bezpieczeństwa
+            </mat-error>
+            <mat-error *ngIf="RepeatPassword.errors.passwordsdiffer">
+              Hasła muszą być takie same
+            </mat-error>
+          </div>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Adres e-mail" formControlName="emailAddress" />
+          <div *ngIf="DisplayErrors(EmailAddress)" class="alert alert-danger">
+            <mat-error *ngIf="EmailAddress.errors.required">
+              Potrzebujemy Twojego e-maila
+            </mat-error>
+            <mat-error *ngIf="EmailAddress.errors.maxlength">
+              Adres e-mail musi mieć nie więcej niż {{ EmailAddress.errors.maxlength.requiredLength }} znaków.
+            </mat-error>
+            <mat-error *ngIf="EmailAddress.errors.email">
+              To nie jest poprawny email
+            </mat-error>
+          </div>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Nazwa wyświetlana" formControlName="displayName" />
+          <div *ngIf="DisplayErrors(DisplayName)" class="alert alert-danger">
+            <mat-error *ngIf="DisplayName.errors.required">
+              Musimy wiedzieć jak Cię nazywać
+            </mat-error>
+            <mat-error *ngIf="DisplayName.errors.minlength">
+              Nazwa musi mieć co najmniej {{ DisplayName.errors.minlength.requiredLength }} znaków.
+            </mat-error>
+            <mat-error *ngIf="DisplayName.errors.maxlength">
+              Nazwa  musi mieć nie więcej niż {{ DisplayName.errors.maxlength.requiredLength }} znaków.
+            </mat-error>
+          </div>
+        </mat-form-field>
+        <div>
+          <button type="submit" mat-raised-button color="primary" [disabled]="createAccountForm.disabled || !createAccountForm.valid">Utwórz</button>
+        </div>
+        <div *ngIf="accountCreated">
+          <p>
+            Konto zostało utworzone.
+          </p>
+          <p>
+            Naciśnij <a [routerLink]="['login']">tutaj</a>, aby się zalogować.
+          </p>
+        </div>
+      </div>
+    </form>
+  </div>
