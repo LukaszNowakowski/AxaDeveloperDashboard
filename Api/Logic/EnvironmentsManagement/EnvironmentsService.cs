@@ -21,9 +21,9 @@
         {
             var environmentsTask =
                 this.mediator.Query<FetchEnvironmentsQuery, List<EnvironmentInformation>>(
-                    new FetchEnvironmentsQuery(request.UserName), cancellationToken);
+                    new FetchEnvironmentsQuery(request.UserId), cancellationToken);
             var linksTask = this.mediator.Query<FetchLinksQuery, List<LinkInformation>>(
-                new FetchLinksQuery(request.UserName), cancellationToken);
+                new FetchLinksQuery(request.UserId), cancellationToken);
             await Task.WhenAll(environmentsTask, linksTask);
             var result = environmentsTask.Result
                 .Select(e =>
@@ -41,8 +41,8 @@
             CancellationToken cancellationToken)
         {
             var environments =
-                await this.FetchEnvironments(new FetchEnvironmentsRequest(request.UserName), cancellationToken);
-            var command = new AddEnvironmentCommand(request.Environment.DisplayName, environments.Environments.Max(e => e.Order + 1));
+                await this.FetchEnvironments(new FetchEnvironmentsRequest(request.UserId), cancellationToken);
+            var command = new AddEnvironmentCommand(request.UserId, request.Environment.DisplayName, environments.Environments.Max(e => e.Order + 1));
             await this.mediator.Handle(command, cancellationToken);
             return new AddEnvironmentResponse(true);
         }

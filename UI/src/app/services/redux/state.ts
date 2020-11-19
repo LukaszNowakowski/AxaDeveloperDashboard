@@ -8,7 +8,8 @@ import * as actions from './actions';
     name: 'services',
     defaults: {
         environments: '',
-        workItems: ''
+        workItems: '',
+        security: ''
     }
 })
 @Injectable()
@@ -16,10 +17,12 @@ export class ServicesState {
     @Action(actions.SetupApiUrls)
     public setupApiUrls(ctx: StateContext<model.ServicesModel>, action: actions.SetupApiUrls): void {
         const state = ctx.getState();
+        console.log(action);
         ctx.setState({
             ...state,
             environments: action.model.environments,
-            workItems: action.model.workItems
+            workItems: action.model.workItems,
+            security: action.model.security
         });
     }
 }

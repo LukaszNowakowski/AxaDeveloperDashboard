@@ -28,17 +28,14 @@
         {
             var result = await this.persistence.RetrieveDataAsync(
                 "FetchLinks",
-                new[] {new CommandParameter("userNameParam", query.UserName)},
-                r =>
-                {
-                    return new LinkInformation(
-                        (int) r["EnvironmentId"],
-                        (int) r["LinkId"],
-                        (string) r["LinkName"],
-                        (string) r["LinkIcon"],
-                        (string) r["Url"],
-                        (int)r["LinkOrder"]);
-                },
+                new[] {new CommandParameter("userIdParam", query.UserId)},
+                r => new LinkInformation(
+                    (int)r["EnvironmentId"],
+                    (int)r["LinkId"],
+                    (string)r["LinkName"],
+                    (string)r["LinkIcon"],
+                    (string)r["Url"],
+                    (int)r["LinkOrder"]),
                 null,
                 cancellationToken);
             return result.ToList();

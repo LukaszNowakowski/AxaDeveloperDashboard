@@ -2,7 +2,7 @@
 DELIMITER $$
 CREATE PROCEDURE `FetchLinks`
 (
-	IN `userNameParam` VARCHAR(50)
+	IN `useridparam` INT
 )
 BEGIN
 	SELECT
@@ -15,6 +15,8 @@ BEGIN
 		FROM
 			environments AS envs
 			JOIN links AS li
-				ON envs.id = li.environmentId;
+				ON envs.id = li.environmentId
+		WHERE
+			envs.userid = useridparam;
 END $$
 DELIMITER ;

@@ -5,11 +5,12 @@
 
     public class FetchEnvironmentsQuery : IQuery<List<EnvironmentInformation>>
     {
-        public FetchEnvironmentsQuery(string userName)
+        public FetchEnvironmentsQuery(
+            int userId)
         {
-            this.UserName = userName;
+            this.UserId = userId;
         }
 
-        public string UserName { get; }
+        public int UserId { get; }
     }
 }

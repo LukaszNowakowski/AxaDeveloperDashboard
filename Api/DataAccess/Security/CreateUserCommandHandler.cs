@@ -1,4 +1,4 @@
-﻿namespace Avanssur.AxaDeveloperDashboard.Api.DataAccess.Environments
+﻿namespace Avanssur.AxaDeveloperDashboard.Api.DataAccess.Security
 {
     using System;
     using System.Threading;
@@ -7,11 +7,11 @@
     using Avanssur.AxaDeveloperDashboard.Api.DataAccess.Cqrs;
     using Avanssur.AxaDeveloperDashboard.Api.DataAccess.DbConnector;
 
-    public class AddEnvironmentCommandHandler : ICommandHandler<AddEnvironmentCommand>
+    public class CreateUserCommandHandler : ICommandHandler<CreateUserCommand>
     {
         private readonly IPersistence persistence;
 
-        public AddEnvironmentCommandHandler(
+        public CreateUserCommandHandler(
             IPersistenceProvider provider)
         {
             if (provider == null)
@@ -22,15 +22,17 @@
             this.persistence = provider.Create("AxaDashboard");
         }
 
-        public async Task Handle(AddEnvironmentCommand command, CancellationToken cancellationToken)
+        public async Task Handle(CreateUserCommand command, CancellationToken cancellationToken)
         {
             await this.persistence.ExecuteOperationAsync(
-                "AddEnvironment",
+                "CreateUser",
                 new[]
                 {
-                    new CommandParameter("userIdParam", command.UserId),
+                    new CommandParameter("externalIdParam", command.ExternalId.ToByteArray()),
+                    new CommandParameter("userNameParam", command.UserName),
+                    new CommandParameter("passwordSaltParam", command.PasswordSalt),
+                    new CommandParameter("passwordHashParam", command.PasswordHash),
                     new CommandParameter("displayNameParam", command.DisplayName),
-                    new CommandParameter("orderParam", command.Order)
                 },
                 null,
                 cancellationToken);

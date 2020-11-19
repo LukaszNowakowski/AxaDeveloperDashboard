@@ -5,11 +5,12 @@
 
     public class FetchLinksQuery : IQuery<List<LinkInformation>>
     {
-        public FetchLinksQuery(string userName)
+        public FetchLinksQuery(
+            int userId)
         {
-            this.UserName = userName;
+            this.UserId = userId;
         }
 
-        public string UserName { get; }
+        public int UserId { get; }
     }
 }

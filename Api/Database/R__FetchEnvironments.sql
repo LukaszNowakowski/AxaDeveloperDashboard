@@ -2,7 +2,7 @@
 DELIMITER $$
 CREATE PROCEDURE `FetchEnvironments`
 (
-	IN `userNameParam` VARCHAR(50)
+	IN `useridparam` INT
 )
 BEGIN
 	SELECT
@@ -10,6 +10,8 @@ BEGIN
 		envs.displayName AS EnvironmentName,
 		envs.order AS EnvironmentOrder
 		FROM
-			environments AS envs;
+			environments AS envs
+		WHERE
+			envs.userid = useridparam;
 END $$
 DELIMITER ;
