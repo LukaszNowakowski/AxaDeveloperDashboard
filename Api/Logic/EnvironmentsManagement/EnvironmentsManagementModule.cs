@@ -1,4 +1,4 @@
-﻿namespace Avanssur.AxaDeveloperDashboard.Api.Logic.Security
+﻿namespace Avanssur.AxaDeveloperDashboard.Api.Logic.EnvironmentsManagement
 {
     using Autofac;
 
@@ -7,8 +7,8 @@
         protected override void Load(ContainerBuilder builder)
         {
             base.Load(builder);
-            builder.RegisterType<DefaultSecurityService>()
-                .As<ISecurityService>();
+            builder.RegisterType<EnvironmentsService>()
+                .As<IEnvironmentsService>();
         }
     }
 }

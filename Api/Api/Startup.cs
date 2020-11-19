@@ -30,7 +30,7 @@ namespace Avanssur.AxaDeveloperDashboard.Api
         }
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            builder.RegisterModule<Logic.LogicModule>();
+            builder.RegisterModule(new Logic.LogicModule(this.Configuration));
             builder.WithMySqlPersistence("AxaDashboard", name => this.Configuration.GetConnectionString(name));
         }
 

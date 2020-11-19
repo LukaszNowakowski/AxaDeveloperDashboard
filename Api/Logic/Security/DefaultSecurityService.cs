@@ -6,6 +6,7 @@
 
     using Avanssur.AxaDeveloperDashboard.Api.DataAccess.Cqrs;
     using Avanssur.AxaDeveloperDashboard.Api.DataAccess.Security;
+    using Avanssur.AxaDeveloperDashboard.Api.Logic.Security.Tokens;
 
     public class DefaultSecurityService : ISecurityService
     {
@@ -13,13 +14,17 @@
 
         private readonly IMediator mediator;
 
+        private readonly ITokenGenerator tokenGenerator;
+
         public DefaultSecurityService(
             ICryptographyProvider cryptographyProvider,
-            IMediator mediator)
+            IMediator mediator,
+            ITokenGenerator tokenGenerator)
         {
             this.cryptographyProvider =
                 cryptographyProvider ?? throw new ArgumentNullException(nameof(cryptographyProvider));
             this.mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+            this.tokenGenerator = tokenGenerator ?? throw new ArgumentNullException(nameof(tokenGenerator));
         }
 
         public async Task<CreateAccountResponse> CreateAccount(CreateAccountRequest request, CancellationToken cancellationToken)
@@ -34,6 +39,34 @@
                 request.DisplayName);
             await this.mediator.Handle(command, cancellationToken);
             return new CreateAccountResponse(userId);
+        }
+
+        public async Task<VerifyCredentialsResponse> VerifyCredentials(VerifyCredentialsRequest request, CancellationToken cancellationToken)
+        {
+            if (request == null)
+            {
+                throw new ArgumentNullException(nameof(request));
+            }
+
+            var saltQuery = new GetPasswordSaltQuery(request.UserName);
+            var saltData = await this.mediator.Query<GetPasswordSaltQuery, GetPasswordSaltResult>(saltQuery, cancellationToken)
+                .ConfigureAwait(false);
+            if (saltData == null)
+            {
+                return new VerifyCredentialsResponse(false, string.Empty);
+            }
+
+            var passwordHash = this.cryptographyProvider.CalculatePasswordHash(request.Password, saltData.PasswordSalt);
+            var credentialsQuery = new VerifyCredentialsQuery(request.UserName, passwordHash);
+            var credentialsVerificationResult = await this.mediator.Query<VerifyCredentialsQuery, VerifyCredentialsResult>(credentialsQuery, cancellationToken)
+                .ConfigureAwait(false);
+            if (credentialsVerificationResult.EntriesCount == 1)
+            {
+                var token = this.tokenGenerator.Create(new TokenData(request.UserName));
+                return new VerifyCredentialsResponse(true, token);
+            }
+
+            return new VerifyCredentialsResponse(false, string.Empty);
         }
     }
 }

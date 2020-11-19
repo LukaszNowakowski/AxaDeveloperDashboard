@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-// import { SecurityService } from '../services/security.service';
+import { SecurityService } from '../services/security.service';
+import * as securityModels from '../services/security.models';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   private formSubmitted = false;
 
   constructor(
-    // private service: SecurityService,
+    private service: SecurityService,
     private router: Router,
     private fb: FormBuilder) {
   }
@@ -42,21 +43,25 @@ export class LoginComponent implements OnInit {
 
     this.loginForm.disable();
     this.errorMessage = '';
-    // return this.service
-    //   .Authenticate(this.UserName.value, this.Password.value)
-    //   .then(r => {
-    //     if (r) {
-    //       this.router.navigateByUrl('/home');
-    //     } else {
-    //       this.errorMessage = 'Niepoprawne dane logowania';
-    //     }
-    //   })
-    //   .catch(_ => {
-    //     this.errorMessage = 'Niepoprawne dane logowania';
-    //   })
-    //   .finally(() => {
-    //     this.loginForm.enable();
-    //   });
+    const request: securityModels.VerifyCredentialsRequest = {
+      UserName: this.UserName.value,
+      Password: this.Password.value
+    };
+    this.service
+      .Authenticate(request)
+      .then(r => {
+        if (r && r.CredentialsValid) {
+          this.router.navigateByUrl('/home');
+        } else {
+          this.errorMessage = 'Niepoprawne dane logowania';
+        }
+      })
+      .catch(_ => {
+        this.errorMessage = 'Niepoprawne dane logowania';
+      })
+      .finally(() => {
+        this.loginForm.enable();
+      });
   }
 
   public CreateAccount(): void {

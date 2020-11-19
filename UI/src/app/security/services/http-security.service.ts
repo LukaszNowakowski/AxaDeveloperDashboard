@@ -13,6 +13,16 @@ export interface CreateAccountOutput {
   created: boolean;
 }
 
+export interface VerifyCredentialsInput {
+  userName: string;
+  password: string;
+}
+
+export interface VerifyCredentialsOutput {
+  credentialsValid: boolean;
+  token: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,12 +30,18 @@ export class HttpSecurityService {
   constructor(private http: HttpClient, private store: Store) { }
 
   public CreateAccount(input: CreateAccountInput): Promise<CreateAccountOutput> {
-    const snapshot = this.store.selectSnapshot(servicesState.ServicesState);
-    console.log(snapshot);
     const baseAddress = this.store.selectSnapshot(servicesState.ServicesState).security;
-    console.log(baseAddress);
     return this.http.post<CreateAccountOutput>(
       baseAddress,
+      input)
+      .toPromise();
+  }
+
+  public VerifyCredentials(input: VerifyCredentialsInput): Promise<VerifyCredentialsOutput> {
+    const baseAddress = this.store.selectSnapshot(servicesState.ServicesState).security;
+    const url = baseAddress + '/createToken';
+    return this.http.post<VerifyCredentialsOutput>(
+      url,
       input)
       .toPromise();
   }

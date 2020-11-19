@@ -17,7 +17,6 @@ export class ServicesState {
     @Action(actions.SetupApiUrls)
     public setupApiUrls(ctx: StateContext<model.ServicesModel>, action: actions.SetupApiUrls): void {
         const state = ctx.getState();
-        console.log(action);
         ctx.setState({
             ...state,
             environments: action.model.environments,

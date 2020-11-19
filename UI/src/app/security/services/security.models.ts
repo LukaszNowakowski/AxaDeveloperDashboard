@@ -8,3 +8,12 @@ export interface CreateUserRequest {
 export interface CreateUserResponse {
     Created: boolean;
 }
+
+export interface VerifyCredentialsRequest {
+    UserName: string;
+    Password: string;
+}
+
+export interface VerifyCredentialsResponse {
+    CredentialsValid: boolean;
+}
