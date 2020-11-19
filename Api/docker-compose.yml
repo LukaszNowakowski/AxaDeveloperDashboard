@@ -31,6 +31,9 @@ services:
             - dev.avanssur.axadeveloperdashboard
         environment:
             - ConnectionStrings:AxaDashboard=Server=dev.avanssur.axadeveloperdashboard.db;Database=axadashboard;Uid=axadashboard;Pwd=axadashboard;CheckParameters=false
+            - Tokens.Server:PrivateKeyFile=/app/key.private.xml
+        volumes:
+            - ./Api/key.private.xml:/app/key.private.xml
 
 networks:
     dev.avanssur.axadeveloperdashboard:
