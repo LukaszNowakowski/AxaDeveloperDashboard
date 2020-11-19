@@ -1,4 +1,4 @@
-import { Injectable as states } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Action, State, StateContext } from '@ngxs/store';
 
 import * as model from './model';
@@ -7,11 +7,10 @@ import * as actions from './actions';
 @State<model.EnvironmentsModel>({
     name: 'environments',
     defaults: {
-        environments: [
-        ]
+        environments: []
     }
 })
-@states()
+@Injectable()
 export class EnvironmentsState {
     @Action(actions.SetEnvironments)
     public setEnvironments(ctx: StateContext<model.EnvironmentsModel>, action: actions.SetEnvironments): void {
