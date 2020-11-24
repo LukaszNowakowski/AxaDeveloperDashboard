@@ -25,6 +25,7 @@ services:
             - int.avanssur.axadeveloperdashboard.db
         environment:
             - ConnectionStrings:AxaDashboard=Server=int.avanssur.axadeveloperdashboard.db;Database=axadashboard;Uid=axadashboard;Pwd=axadashboard;CheckParameters=false
+            - AllowedOrigins=http://localhost:6400
         networks:
             - int.avanssur.axadeveloperdashboard.databases
         ports:
