@@ -12,6 +12,7 @@ export interface CreateUserResponse {
 export interface VerifyCredentialsRequest {
     UserName: string;
     Password: string;
+    PersistToken: string;
 }
 
 export interface VerifyCredentialsResponse {

@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
   templateUrl: './environments.component.html',
   styleUrls: ['./environments.component.scss']
 })
-export class EnvironmentsComponent implements OnInit {
+export class EnvironmentsComponent {
 
   public get Environments(): Observable<EnvironmentsModels.Environment[]> {
     return this.environments$
@@ -42,9 +42,6 @@ export class EnvironmentsComponent implements OnInit {
       Url: source.url,
       Icon: source.icon
     } as EnvironmentsModels.Link;
-  }
-
-  ngOnInit(): void {
   }
 
   public AddEnvironment(): void {

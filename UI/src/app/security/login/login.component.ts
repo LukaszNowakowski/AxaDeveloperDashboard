@@ -23,8 +23,13 @@ export class LoginComponent implements OnInit {
   public ngOnInit(): void {
     this.loginForm = this.fb.group({
       userName: ['', [Validators.required]],
-      password: ['', [Validators.required]]
+      password: ['', [Validators.required]],
+      rememberMe: [false, []]
     });
+  }
+
+  get RememberMe(): AbstractControl {
+    return this.loginForm.controls.rememberMe;
   }
 
   get UserName(): AbstractControl {
@@ -45,7 +50,8 @@ export class LoginComponent implements OnInit {
     this.errorMessage = '';
     const request: securityModels.VerifyCredentialsRequest = {
       UserName: this.UserName.value,
-      Password: this.Password.value
+      Password: this.Password.value,
+      PersistToken: this.RememberMe.value
     };
     this.service
       .Authenticate(request)
