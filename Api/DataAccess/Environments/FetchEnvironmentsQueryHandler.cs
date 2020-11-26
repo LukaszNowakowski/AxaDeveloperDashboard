@@ -28,7 +28,7 @@
         {
             var result = await this.persistence.RetrieveDataAsync(
                 "FetchEnvironments",
-                new[] { new CommandParameter("userIdParam", query.UserId) },
+                new[] { new CommandParameter("userNameParam", query.UserName) },
                 r =>
                 {
                     return new EnvironmentInformation(

@@ -16,15 +16,19 @@
 
         private readonly ITokenGenerator tokenGenerator;
 
+        private readonly ITokenValidator tokenValidator;
+
         public DefaultSecurityService(
             ICryptographyProvider cryptographyProvider,
             IMediator mediator,
-            ITokenGenerator tokenGenerator)
+            ITokenGenerator tokenGenerator,
+            ITokenValidator tokenValidator)
         {
             this.cryptographyProvider =
                 cryptographyProvider ?? throw new ArgumentNullException(nameof(cryptographyProvider));
             this.mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
             this.tokenGenerator = tokenGenerator ?? throw new ArgumentNullException(nameof(tokenGenerator));
+            this.tokenValidator = tokenValidator ?? throw new ArgumentNullException(nameof(tokenValidator));
         }
 
         public async Task<CreateAccountResponse> CreateAccount(CreateAccountRequest request, CancellationToken cancellationToken)

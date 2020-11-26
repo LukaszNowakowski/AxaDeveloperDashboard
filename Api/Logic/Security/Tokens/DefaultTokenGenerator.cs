@@ -6,7 +6,9 @@
     using System.IdentityModel.Tokens.Jwt;
     using System.IO;
     using System.Security.Claims;
+
     using Avanssur.AxaDeveloperDashboard.Api.Logic.Security.Rsa;
+
     using Microsoft.IdentityModel.Tokens;
 
     public class DefaultTokenGenerator : ITokenGenerator

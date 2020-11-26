@@ -22,7 +22,13 @@
         [HttpGet]
         public async Task<IActionResult> FetchEnvironments(CancellationToken cancellationToken)
         {
-            var request = new EnvironmentsManagement.FetchEnvironmentsRequest(-1);
+            var tokenData = this.HttpContext.GetTokenData();
+            if (tokenData == null)
+            {
+                return this.Unauthorized();
+            }
+
+            var request = new EnvironmentsManagement.FetchEnvironmentsRequest(tokenData.UserName);
             var response = await this.environmentsService.FetchEnvironments(request, cancellationToken);
             var result = new FetchEnvironmentsOutput(
                 response.Environments.Select(Map).ToArray());
@@ -32,8 +38,14 @@
         [HttpPost]
         public async Task<IActionResult> AddEnvironment([FromBody]Environment environment, CancellationToken cancellationToken)
         {
+            var tokenData = this.HttpContext.GetTokenData();
+            if (tokenData == null)
+            {
+                return this.Unauthorized();
+            }
+
             var request = new EnvironmentsManagement.AddEnvironmentRequest(
-                -1,
+                tokenData.UserName,
                 new EnvironmentsManagement.Environment(-1, environment.DisplayName, -1));
             var response = await this.environmentsService.AddEnvironment(request, cancellationToken);
             var result = new AddEnvironmentOutput(response.Created);

@@ -2,13 +2,13 @@
 {
     public class AddEnvironmentRequest
     {
-        public AddEnvironmentRequest(int userId, Environment environment)
+        public AddEnvironmentRequest(string userName, Environment environment)
         {
-            this.UserId = userId;
+            this.UserName = userName;
             this.Environment = environment;
         }
 
-        public int UserId { get; }
+        public string UserName { get; }
 
         public Environment Environment { get; }
     }

@@ -5,16 +5,16 @@
     public class AddEnvironmentCommand : ICommand
     {
         public AddEnvironmentCommand(
-            int userId,
+            string userName,
             string displayName,
             int order)
         {
-            this.UserId = userId;
+            this.UserName = userName;
             this.DisplayName = displayName;
             this.Order = order;
         }
 
-        public int UserId { get; }
+        public string UserName { get; }
 
         public string DisplayName { get; }
 

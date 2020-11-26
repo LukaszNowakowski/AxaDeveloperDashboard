@@ -6,6 +6,7 @@ namespace Avanssur.AxaDeveloperDashboard.Api
 
     using Avanssur.AxaDeveloperDashboard.Api.DataAccess.DbConnector.Autofac;
     using Avanssur.AxaDeveloperDashboard.Api.DataAccess.DbConnector.MySql;
+    using Avanssur.AxaDeveloperDashboard.Api.Middlewares;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
@@ -49,7 +50,7 @@ namespace Avanssur.AxaDeveloperDashboard.Api
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseTokensMiddleware();
 
             var allowedOriginsSection = this.Configuration.GetSection("AllowedOrigins");
             var origins = allowedOriginsSection.Value.Split(";", StringSplitOptions.RemoveEmptyEntries);

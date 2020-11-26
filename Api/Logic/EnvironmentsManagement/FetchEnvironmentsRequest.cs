@@ -2,11 +2,11 @@
 {
     public class FetchEnvironmentsRequest
     {
-        public FetchEnvironmentsRequest(int userId)
+        public FetchEnvironmentsRequest(string userName)
         {
-            this.UserId = userId;
+            this.UserName = userName;
         }
 
-        public int UserId { get; }
+        public string UserName { get; }
     }
 }

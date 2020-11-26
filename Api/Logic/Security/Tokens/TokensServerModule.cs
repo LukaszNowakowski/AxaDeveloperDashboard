@@ -23,6 +23,7 @@
             }
 
             builder.RegisterType<DefaultTokenGenerator>().As<ITokenGenerator>();
+            builder.RegisterType<DefaultTokenValidator>().As<ITokenValidator>();
             builder.RegisterModule<Rsa.RsaModule>();
             var settings = new Settings();
             this.configuration.Bind("Tokens.Server", settings);

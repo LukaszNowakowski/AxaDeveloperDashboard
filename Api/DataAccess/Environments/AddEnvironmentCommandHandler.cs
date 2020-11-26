@@ -28,7 +28,7 @@
                 "AddEnvironment",
                 new[]
                 {
-                    new CommandParameter("userIdParam", command.UserId),
+                    new CommandParameter("userNameParam", command.UserName),
                     new CommandParameter("displayNameParam", command.DisplayName),
                     new CommandParameter("orderParam", command.Order)
                 },
